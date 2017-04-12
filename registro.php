@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Registro</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
+<?php
+  include ("header.php");
+?>
   <body>
     <div class="container">
 
@@ -17,7 +10,7 @@
         <h3><label class="control-label col-sm-10"for="bienvenida">Completa el Formulario</label></h3>
       </div>
       <div class="form-group">
-        <h6><label class="control-label col-sm-10"for="bienvenida">¿Ya estas registrado?<a href="#">Entrar</a></label></h6>
+        <h6><label class="control-label col-sm-10"for="bienvenida">¿Ya estas registrado?<a href="ingresar.php" target="_self">Entrar</a></label></h6>
       </div>
 
       <div class="form-group">
@@ -79,4 +72,4 @@
         </form>
     </div>
   </body>
-</html>
+<?php include ("footer.php"); ?>
