@@ -56,7 +56,7 @@
                 <li><a href="#">Profesionales</a></li>
               </ul>
             </li>
-            <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</a></li>
+            <li><a href="ayuda.php" target="_self"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
