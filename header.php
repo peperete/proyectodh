@@ -25,13 +25,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    </style>
+
+    <!-- Estilos propios del proyecto que sobrescriben los de bootstrap -->
+    <link rel="stylesheet" href="css/estilosProyecto.css">
   </head>
   <body>
     <nav class="navbar navbar-default">
