@@ -4,9 +4,12 @@
   <body>
     <div class="container">
 
+      </div>
     <form class="form-horizontal">
       <div class="form-group">
         <h3><label class="control-label col-sm-10"for="bienvenida">¡Bienvenido(a)!</label></h3>
+        <h1><label class="control-label col-sm-10"for="bienvenida">ServiceAdvisor</label></h1>
+
         <h3><label class="control-label col-sm-10"for="bienvenida">Ingresa</label></h3>
       </div>
 
