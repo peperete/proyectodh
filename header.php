@@ -9,8 +9,8 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
 
     <!-- Los 3 meta tags anteriores deben ir primeros en el head; cualquier otro contenido del head debe venir a continuación de estos tags -->
-    <title>Servicios Tecnicos</title>
-
+    <title>Service Advisor</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/advisoricono.png">
     <!-- Bootstrap -->
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -40,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="home.php" target="_self">Logo</a>
+          <a class="navbar-brand" href="home.php" target="_self"><img src="images/logoadvisor02.png" class="img-responsive" style = "height:36px" alt="Image"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
