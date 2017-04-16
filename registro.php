@@ -12,7 +12,7 @@
           <form class="form-horizontal">
             <div class="row">
               <div class="col-sm-12">
-                <h3 style="text-align:center">¡Bienvenido(a)!</h3>
+                <h3 style="text-align:center"><strong>¡Bienvenido(a)!</strong></h3>
               </div>
             </div>
             <div class="row">
@@ -23,7 +23,7 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <h3 style="text-align:center">Completa el Formulario</h3>
+                <h3 style="text-align:center"><strong>Completa el Formulario</strong></h3>
               </div>
 
 
@@ -84,7 +84,7 @@
 
           <div class="form-group">
             <div class="row">
-              <div class="col-sm-offset-2 col-sm-10">
+              <div class="col-sm-12">
                 <div class="checkbox">
                   <h5 style="text-align:center"><input type="checkbox"> Recordarme</h5>
                 </div>
@@ -93,8 +93,23 @@
           </div>
           <div class="form-group">
             <div class="row">
-              <div class="col-sm-offset-2 col-sm-10">
-                <h5 style="text-align:center"><button type="submit" class="btn btn-default" style="background-color:#FF7557">Registrarme</button></h5>
+              <div class="col-sm-12">
+                <h5 style="text-align:center; color:white"><button type="submit" class="btn btn-prymary btn-lg" style="background-color:#FF7557">Registrarme</button></h5>
+              </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <h3 style="text-align:center"><strong>- ó Registrate con -</strong></h3>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-12">
+                <h5 style="text-align:center"><a href="#"><img src="images/facebook_mini.png"></a></h5>
               </div>
             </div>
           </div>
