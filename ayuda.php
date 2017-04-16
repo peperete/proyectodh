@@ -1,7 +1,6 @@
 <?php
   include("header.php");
 ?>
-<!--<link rel="shortcut icon" type="image/x-icon" href="/imagenes/faviconjm.ico">-->
 <div class="jumbotron text-center fondoayuda">
     <h1 class="textoayuda">
     PREGUNTAS<br>FRECUENTES

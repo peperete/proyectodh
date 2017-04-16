@@ -10,7 +10,7 @@
 
     <!-- Los 3 meta tags anteriores deben ir primeros en el head; cualquier otro contenido del head debe venir a continuación de estos tags -->
     <title>Service Advisor</title>
-
+    <link rel="shortcut icon" type="image/x-icon" href="images/advisoricono.png">
     <!-- Bootstrap -->
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
