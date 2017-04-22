@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  $nombre_usuario = "";
+  if (!empty($_SESSION["nombre"])) {
+    $nombre_usuario = $_SESSION["nombre"];
+  }
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -48,12 +55,24 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-wrench"></span> Contratar Servicios</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Ingresar <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?=($nombre_usuario != ""?$nombre_usuario:"Ingresar") ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="ingresar.php" target="_self">Iniciar sesión</a></li>
-                <li><a href="registro.php" target="_self">Registrarme</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Profesionales</a></li>
+                <?php
+                  if ($nombre_usuario != "") {
+                ?>
+                    <li><a href="#">Mi cuenta</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="salir.php">Salir</a></li>
+                <?php
+                } else {
+                ?>
+                  <li><a href="ingresar.php" target="_self">Iniciar sesión</a></li>
+                  <li><a href="registro.php" target="_self">Registrarme</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Profesionales</a></li>
+                <?php
+                }
+                ?>
               </ul>
             </li>
             <li><a href="ayuda.php" target="_self"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</a></li>
