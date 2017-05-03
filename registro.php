@@ -48,8 +48,32 @@
       </div>
       <div class="col-sm-3"></div>
     </div>
+
+ <!--Imagen de perfil-->
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
+        <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <div class="col-sm-3">
+              </div>
+              <div class="col-sm-6">
+                <a href="#"><img src="images/silueta_foto_perfil.jpg" alt="foto_perfil" class="img-responsive" style="border-radius:100px"></a>
+                <div class="col-sm-3">
+                </div>
+              </div>
+            </div>
+<!--Subir archivo de Imagen de Perfil-->
+            <div class="form-group">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h5 style="text-align:center; color:white">
+                    <button type="submit" class="btn btn-prymary" style="background-color:#FF7557" value="buscarIMG" id="buscarImgg" name="submit">Insertar Foto de Perfil</button>
+                  </h5>
+                </div>
+              </div>
+            </div>
+
+
         <form class="form-horizontal" action="registro.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label class="control-label col-sm-2" for="nombre">Nombre:</label>
