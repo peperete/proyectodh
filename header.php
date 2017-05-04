@@ -1,6 +1,17 @@
 <?php
   session_start();
   $nombre_usuario = "";
+  // echo "<PRE>";
+  // echo "Cookie: <br>";
+  // print_r($_COOKIE);
+  // echo "Session: <br>";
+  // print_r($_SESSION);
+  // echo "</PRE>";
+  if (isset($_COOKIE["nombre"])) {
+    $nombre_usuario = $_COOKIE["nombre"];
+    echo "hay nombre en cookie";
+  }
+
   if (!empty($_SESSION["nombre"])) {
     $nombre_usuario = $_SESSION["nombre"];
   }
