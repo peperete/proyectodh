@@ -5,17 +5,25 @@
   if (!empty($_POST)) {
     $emailUsuario = $_POST["email"];
     $pwdUsuario = $_POST["pwd"];
+    $recordame = $_POST["recordame"];
 
     // Validar usuario
     $erroresIngreso = validarIngresoUsuario($_POST);
-
+    // Guardar los datos en SESSION
     if (empty($erroresIngreso)) {
       $datosUsr = datosUsuario($emailUsuario);
       $_SESSION["nombre"] = $datosUsr["nombre"];
       $_SESSION["apellido"] = $datosUsr["apellido"];
       $_SESSION["email"] = $datosUsr["email"];
       $_SESSION["pwd"] = $datosUsr["pwd"];
-			// Ir al home ya logueado, guardado los datos en SESSION
+      // Si recordame, guardar los datos en cookies
+      if ($recordame) {
+        setcookie ("nombre", $datosUsr["nombre"], time()+31536000);
+        setcookie ("apellido", $datosUsr["apellido"], time()+31536000);
+        setcookie ("email", $datosUsr["email"], time()+31536000);
+        setcookie ("pwd", $datosUsr["pwd"], time()+31536000);
+      }
+			// Ir al home ya logueado
 			header("location:home.php");exit;
     }
   }
@@ -47,7 +55,7 @@
           <div class="form-group">
             <label class="control-label col-sm-2" for="email">Email:</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="email" name="email" placeholder="Ingresar email">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Ingresar email" value="<?= $emailUsuario ?>">
             </div>
           </div>
           <div class="form-group">
@@ -86,8 +94,8 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <div class="checkbox">
-          <h4 style="text-align:center"><strong><a href="#"> Olvide mi Contraseña</strong></a></h4>
+        <div>
+          <h4 style="text-align:center"><strong><a href="olvido_contraseña.php"> Olvide mi Contraseña</strong></a></h4>
         </div>
       </div>
     </div>

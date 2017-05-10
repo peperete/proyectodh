@@ -22,7 +22,13 @@
         </div>
         <div class="col-sm-3"></div>
       </div>
-    </div>  
+    </div
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <h3 style="text-align:center"><strong>Te has registrado Satisfactoriamente</strong></h3>
+      </div>
+      <div class="col-sm-3" style="width:auto; height:200px"></div>
+    </div>
   </body>
 </html>
 

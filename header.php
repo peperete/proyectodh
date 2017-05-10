@@ -1,6 +1,17 @@
 <?php
   session_start();
   $nombre_usuario = "";
+  // echo "<PRE>";
+  // echo "Cookie: <br>";
+  // print_r($_COOKIE);
+  // echo "Session: <br>";
+  // print_r($_SESSION);
+  // echo "</PRE>";
+  if (isset($_COOKIE["nombre"])) {
+    $nombre_usuario = $_COOKIE["nombre"];
+    // echo "hay nombre en cookie";
+  }
+
   if (!empty($_SESSION["nombre"])) {
     $nombre_usuario = $_SESSION["nombre"];
   }
@@ -21,6 +32,9 @@
     <!-- Bootstrap -->
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Estilos propios del proyecto que sobrescriben los de bootstrap -->
+    <link rel="stylesheet" href="css/estilosProyecto.css">
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -33,8 +47,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Estilos propios del proyecto que sobrescriben los de bootstrap -->
-    <link rel="stylesheet" href="css/estilosProyecto.css">
+
   </head>
   <body>
     <nav class="navbar navbar-default">
