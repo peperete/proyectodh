@@ -74,6 +74,7 @@
                   if ($nombre_usuario != "") {
                 ?>
                     <li><a href="#">Mi cuenta</a></li>
+                    <li><a href="editar_perfil.php">Editar Perfil</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="salir.php">Salir</a></li>
                 <?php
