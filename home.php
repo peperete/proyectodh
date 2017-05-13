@@ -14,18 +14,18 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="images/electricidad3.png" class="img-responsive" alt="Electricidad">
+        <img src="images/serviciotecnico1.jpg" class="img-responsive" alt="Electricidad">
         <div class="carousel-caption">
-          <h2>Electric Friday!!!!</h2>
-          <h3>Hasta 50% dto. en servicios seleccionados</h3>
+          <h2>CONTRATÁ A LOS MEJORES Y MÁS RECOMENDADOS PROFESIONALES</h2>
+          <h3>Seleccioná de acuerdo a tu zona y necesidad.</h3>
         </div>
       </div>
 
       <div class="item">
         <img src="images/gas-2.jpg" alt="Gasista">
         <div class="carousel-caption">
-          <h3>More Sell $</h3>
-          <p>Lorem ipsum...</p>
+          <h3>SERVICIOS SEGUROS Y RECOMENDADOS POR LA COMUNIDAD DE SERVICE ADVISOR</h3>
+          <p>Profesionales recomendados por la propia comunidad</p>
         </div>
       </div>
     </div>
@@ -40,7 +40,11 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-
+  <div class="jumbotron">
+    <h1>Bienvenidos a Service Advisor</h1>
+    <p>Service Advisor es una comunidad de usuarios y profesionales que brindan servicios de mantenimiento del hogar. Se basa en la transparencia en la oferta y demanda de servicios a través de la calificación, recomendación y comentarios mutuos brindados en nuestro portal de servicios y red social.</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Leer más</a></p>
+</div>
 
   <div class="container text-center">
     <h3>CATEGORÍAS DE SERVICIOS PROFESIONALES Y EMPRESAS</h3><br>
