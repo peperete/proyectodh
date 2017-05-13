@@ -1,8 +1,12 @@
 <?php
   include_once ("header.php");
   include_once ("funciones_usuarios.php");
+  // echo "<PRE>";
+  // var_dump ($arrayPreguntas1);
+  // echo "</PRE>";
   $nombreUsuario = $apellidoUsuario = $emailUsuario = $telfijoUsuario = $celularUsuario = "";
   if (!empty($_POST)) {
+
     $nombreUsuario = $_POST["nombre"];
     $apellidoUsuario = $_POST["apellido"];
     $telfijoUsuario = $_POST["telfijo"];
@@ -113,21 +117,23 @@
 
   <h4 style="text_aligne:lefth"><b>Selecciona las preguntas de Seguridad</b></h4>
 
-<div class="form-group">
-  <label class="control-label col-sm-4" for="pregunta_1">Pregunta 1</label>
-  <div class="col-sm-8">
-    <select class="pregunta_1" name="pregunta_1">
-      <?php
-      $pregunta_1= array('1'=>'¿Cual es mi postre favorito?','2'=>'Pais que deseo conocer','3'=>'Apellido Materno de mi Padre');
-      foreach ($pregunta_1 as $value) {
-      echo "<option value='". $value ."'";
-      if ($_POST["pregunta_1"] == $value) {
-        echo "selected";
-      }
-      echo ">" . $value ."</option>";
-    }
-       ?>
-    </select>
+  <div class="form-group">
+    <label class="control-label col-sm-4" for="pregunta_1">Pregunta 1</label>
+    <div class="col-sm-8">
+      <select class="pregunta_1" name="pregunta_1">
+        <?php
+        // $pregunta_1= array('1'=>'¿Cual es mi postre favorito?','2'=>'Pais que deseo conocer','3'=>'Apellido Materno de mi Padre');
+        foreach ($arrayPreguntas1 as $key => $value) {
+          echo "<option value='". $key ."'";
+          if (!empty($_POST["pregunta_1"])){
+            if ($_POST["pregunta_1"] == $key) {
+              echo "selected";
+            }
+          }
+          echo ">" . $value ."</option>";
+        }
+        ?>
+      </select>
     </div>
   </div>
   <div class="form-group">
@@ -143,15 +149,16 @@
     <div class="col-sm-8">
       <select class="pregunta_2" name="pregunta_2">
         <?php
-        $pregunta_2= array('1'=>'¿Cual es mi postre favorito?','2'=>'Pais que deseo conocer','3'=>'Apellido Materno de mi Padre');
-        foreach ($pregunta_1 as $value) {
-        echo "<option value='". $value ."'";
-        if ($_POST["pregunta_2"] == $value) {
-          echo "selected";
+        foreach ($arrayPreguntas2 as $key => $value) {
+          echo "<option value='". $key ."'";
+          if (!empty($_POST["pregunta_2"])){
+            if ($_POST["pregunta_2"] == $key) {
+              echo "selected";
+            }
+          }
+          echo ">" . $value ."</option>";
         }
-        echo ">" . $value ."</option>";
-      }
-         ?>
+        ?>
       </select>
       </div>
     </div>

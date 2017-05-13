@@ -2,6 +2,7 @@
   include_once ("header.php");
   include_once ("funciones_usuarios.php");
   $nombreUsuario = $apellidoUsuario = $emailUsuario = $telfijoUsuario = $celularUsuario = "";
+
   if (!empty($_POST)) {
     $nombreUsuario = $_POST["nombre"];
     $apellidoUsuario = $_POST["apellido"];
@@ -12,9 +13,9 @@
     $respuesta_1= $_POST["respuesta_1"];
     $pregunta_2 = $_POST["pregunta_2"];
     $respuesta_2= $_POST["respuesta_2"];
-    $idUsuario = $_POST["idUsuario"];
-    $pwdUsuario = $_POST["pwdUsuario"];
-    //print_r($_POST);
+    $idUsuario = $_POST["id"];
+    $pwdUsuario = $_POST["pwd"];
+    // print_r($_POST);
     // Validar usuario
     $erroresRegistro = validarRegistroUsuario($_POST, true);
 
@@ -29,6 +30,8 @@
 			//header("location:bienvenido.php");exit;
     }
   }else{
+    //Carga los datos del usuario de la sesión
+
     //print_r($_SESSION);
     $datosUsuario = datosUsuario($_SESSION['email']);
     //print_r($datosUsuario);
@@ -72,8 +75,8 @@
       <div class="col-sm-6 col-sm-offset-3">
         <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" enctype="multipart/form-data">
 
-          <input type="hidden" name="pwdUsuario" readonly="true" value="<?= $pwdUsuario ?>">
-          <input type="hidden" name="idUsuario" readonly="true" value="<?= $idUsuario ?>">
+          <input type="hidden" name="pwd" readonly="true" value="<?= $pwdUsuario ?>">
+          <input type="hidden" name="id" readonly="true" value="<?= $idUsuario ?>">
 
             <div class="form-group">
               <div class="col-sm-3">
@@ -137,14 +140,14 @@
               <div class="col-sm-10">
                 <select class="form-control" name="pregunta_1">
                   <?php
-                  foreach ($arrayPreguntas1 as $value) {
-                  echo "<option value='". $value ."'";
-                  if ($_POST["pregunta_1"] == $value) {
-                    echo "selected";
+                  foreach ($arrayPreguntas1 as $key => $value) {
+                    echo "<option value='". $key ."'";
+                    if ($pregunta_1 == $key) {
+                        echo "selected";
+                    }
+                    echo ">" . $value ."</option>";
                   }
-                  echo ">" . $value ."</option>";
-                }
-                   ?>
+                  ?>
                 </select>
                 </div>
               </div>
@@ -161,14 +164,14 @@
                 <div class="col-sm-10">
                   <select class="form-control" name="pregunta_2">
                     <?php
-                    foreach ($arrayPreguntas2 as $value) {
-                    echo "<option value='". $value ."'";
-                    if ($_POST["pregunta_2"] == $value) {
-                      echo "selected";
+                    foreach ($arrayPreguntas2 as $key => $value) {
+                      echo "<option value='". $key ."'";
+                      if ($pregunta_2 == $key) {
+                          echo "selected";
+                        }
+                      echo ">" . $value ."</option>";
                     }
-                    echo ">" . $value ."</option>";
-                  }
-                     ?>
+                    ?>
                   </select>
                   </div>
                 </div>

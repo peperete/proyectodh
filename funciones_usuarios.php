@@ -91,8 +91,8 @@ $arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que dese
       "respuesta_1" => $usuario["respuesta_1"],
       "pregunta_2"=> $usuario["pregunta_2"],
       "respuesta_2" => $usuario["respuesta_2"],
-			"pwd" => $usuario["pwdUsuario"],
-			"id" => $usuario["idUsuario"],
+			"pwd" => $usuario["pwd"],
+			"id" => $usuario["id"],
 		];
 		return $usuarioJS;
 	}
@@ -114,7 +114,7 @@ $arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que dese
       }
     }
     $usuarioJSON= implode(PHP_EOL, $usuariosArray);
-    file_put_contents("usuarios.json", $usuarioJSON.PHP_EOL);
+    file_put_contents("usuarios.json", $usuarioJSON);
 
   }
 
@@ -191,6 +191,29 @@ $arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que dese
       }
     }
 		return $errores;
+  }
+
+  function validarCambioPwd($pwd1, $pwd2){
+    $errores = [];
+
+    if (trim($pwd1) == ""){
+      $errores[] = "Debe ingresar su password";
+    }
+    if (trim($pwd2) == ""){
+      $errores[] = "Debe reingresar su password";
+    }
+    if ($pwd1 != $pwd2){
+      $errores[] = "Error en la validación de password, deben ser iguales";
+    }
+    return $errores;
+  }
+
+  function guardarUsrSession ($email) {
+
+    $datoUsrArr = datosUsuario($email);
+    foreach ($datoUsrArr as $key => $value) {
+      $_SESSION[$key] = $value;
+    }
   }
 
 ?>

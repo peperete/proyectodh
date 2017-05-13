@@ -1,6 +1,27 @@
 <?php
-  include ("header.php");
+  include_once ("header.php");
   include_once ("funciones_usuarios.php");
+  $usuario_inex = false;
+  if (!empty($_POST["email"])) {
+    // validar si existe el usuario
+    if (existeElUsuario($_POST["email"])) {
+      // Traer los datos del usuario
+      //  $datosUsr = datosUsuario($_POST["email"]);
+      // Setear datos de usuario en sesion
+      guardarUsrSession ($_POST["email"]);
+      // Elimino el nombre de la sesión para que no lo identifique como logueado y guardo el nombre en otra variable
+      $_SESSION["nombre_usr"] = $_SESSION["nombre"];
+      $_SESSION["nombre"] = "";
+
+      // ir a preguntasSegur.php
+      header("location:preguntasSegur.php");
+      exit;
+    } else {
+      $usuario_inex = true;
+      echo "no existe usuario";
+    }
+  }
+
 
 ?>
 <body>
@@ -32,12 +53,12 @@
 
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <form class="form-horizontal" action="preguntasSegur.php" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
 
           <div class="form-group">
             <label class="control-label col-sm-2" for="email">Email:</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="email" name="email" placeholder="Ingresar email" value="<?= $emailUsuario ?>">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Ingresar email" required>
             </div>
           </div>
 
@@ -52,6 +73,11 @@
       </div>
       <div class="col-sm-3"></div>
     </div>
+    <?php
+      if ($usuario_inex) {
+        echo '<div class="alert alert-danger" role="alert"> Usuario inexistente </div>';
+      }
+    ?>
 
   </div>
 </body>
