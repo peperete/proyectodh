@@ -69,8 +69,18 @@
         font-weight: bold;
         color:#979494;
        }
+      @media screen and (max-width:736px){
+        .glyphicon{
+          display:none;
+        }
+        .textfaq{
+                  font-size:2em;
+                  text-align:center;
+              }
+      }
+}
       </style>
-        <h2>
+        <h2 class="textfaq">
             Preguntas frecuentes (FAQ)
         </h2>
         <p><strong>Nota:</strong> Las <strong>respuestas</strong> de las siguientes preguntas lograrás visualizarlas al hacer <strong>Clik </strong>en los Items siguientes.</p>
@@ -157,7 +167,7 @@
            }
           </style>
           <!-- Pregunta 04-->
-          <h2>Preguntas frecuentes (FAQ)</h2>
+          <h2 class="textfaq">Preguntas frecuentes (FAQ)</h2>
           <p><strong>Nota:</strong> Las <strong>respuestas</strong> de las siguientes preguntas lograrás visualizarlas al hacer <strong>Clik </strong>en los Items siguientes.</p>
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -215,7 +225,7 @@
         color:#979494;
        }
       </style>
-          <h2>Preguntas frecuentes (FAQ)</h2>
+          <h2 class="textfaq">Preguntas frecuentes (FAQ)</h2>
           <p><strong>Nota:</strong> Las <strong>respuestas</strong> de las siguientes preguntas lograrás visualizarlas al hacer <strong>Clik </strong>en los Items siguientes.</p>
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -275,7 +285,7 @@
         color:#979494;
        }
       </style>
-          <h2>Preguntas frecuentes (FAQ)</h2>
+          <h2 class="textfaq">Preguntas frecuentes (FAQ)</h2>
           <p><strong>Nota:</strong> Las <strong>respuestas</strong> de las siguientes preguntas lograrás visualizarlas al hacer <strong>Clik </strong>en los Items siguientes.</p>
           <div class="panel panel-default">
             <div class="panel-heading">
