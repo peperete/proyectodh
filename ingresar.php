@@ -95,7 +95,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div>
-          <h4 style="text-align:center"><strong><a href="olvido_contraseña.php"> Olvide mi Contraseña</strong></a></h4>
+          <h4 style="text-align:center"><strong><a href="olvido_contrasenia.php"> Olvide mi Contraseña</strong></a></h4>
         </div>
       </div>
     </div>

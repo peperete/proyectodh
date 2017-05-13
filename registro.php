@@ -8,6 +8,10 @@
     $telfijoUsuario = $_POST["telfijo"];
     $celularUsuario = $_POST["celular"];
     $emailUsuario = $_POST["email"];
+    $pregunta_1 = $_POST["pregunta_1"];
+    $respuesta_1= $_POST["respuesta_1"];
+    $pregunta_2 = $_POST["pregunta_2"];
+    $respuesta_2= $_POST["respuesta_2"];
 
     // Validar usuario
     $erroresRegistro = validarRegistroUsuario($_POST);
@@ -105,6 +109,62 @@
                 <input type="email" class="form-control" id="email" name="email" placeholder="Ingresar email" value="<?= $emailUsuario ?>">
               </div>
             </div>
+<!-- Preguntas de Seguridad -->
+
+  <h4 style="text_aligne:lefth"><b>Selecciona las preguntas de Seguridad</b></h4>
+
+<div class="form-group">
+  <label class="control-label col-sm-4" for="pregunta_1">Pregunta 1</label>
+  <div class="col-sm-8">
+    <select class="pregunta_1" name="pregunta_1">
+      <?php
+      $pregunta_1= array('1'=>'¿Cual es mi postre favorito?','2'=>'Pais que deseo conocer','3'=>'Apellido Materno de mi Padre');
+      foreach ($pregunta_1 as $value) {
+      echo "<option value='". $value ."'";
+      if ($_POST["pregunta_1"] == $value) {
+        echo "selected";
+      }
+      echo ">" . $value ."</option>";
+    }
+       ?>
+    </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-4" for="pwd">Respuesta 1</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="respuesta_1" name= "respuesta_1" placeholder="Ingresar Respuesta" required>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label class="control-label col-sm-4" for="pregunta_2">Pregunta 2</label>
+    <div class="col-sm-8">
+      <select class="pregunta_2" name="pregunta_2">
+        <?php
+        $pregunta_2= array('1'=>'¿Cual es mi postre favorito?','2'=>'Pais que deseo conocer','3'=>'Apellido Materno de mi Padre');
+        foreach ($pregunta_1 as $value) {
+        echo "<option value='". $value ."'";
+        if ($_POST["pregunta_2"] == $value) {
+          echo "selected";
+        }
+        echo ">" . $value ."</option>";
+      }
+         ?>
+      </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="Respuesta_2">Respuesta 2</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" id="respuesta_2_2" name= "respuesta_2" placeholder="Ingresar Respuesta" required>
+      </div>
+    </div>
+
+
+
+
             <div class="form-group">
               <label class="control-label col-sm-2" for="pwd">Contraseña:</label>
               <div class="col-sm-10">
