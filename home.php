@@ -24,8 +24,8 @@
       <div class="item">
         <img src="images/comunidad.jpg" alt="Gasista">
         <div class="carousel-caption">
-          <h3>SERVICIOS SEGUROS Y RECOMENDADOS POR LA COMUNIDAD DE SERVICE ADVISOR</h3>
-          <p>Profesionales recomendados por la propia comunidad</p>
+          <h2>SERVICIOS SEGUROS Y RECOMENDADOS POR LA COMUNIDAD DE SERVICE ADVISOR</h2>
+          <h3>Profesionales recomendados por la propia comunidad</h3>
         </div>
       </div>
     </div>

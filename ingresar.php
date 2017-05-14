@@ -5,7 +5,7 @@
   if (!empty($_POST)) {
     $emailUsuario = $_POST["email"];
     $pwdUsuario = $_POST["pwd"];
-    $recordame = $_POST["recordame"];
+    $recordame = isset($_POST["recordame"]);
 
     // Validar usuario
     $erroresIngreso = validarIngresoUsuario($_POST);
