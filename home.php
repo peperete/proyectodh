@@ -22,7 +22,7 @@
       </div>
 
       <div class="item">
-        <img src="images/gas-2.jpg" alt="Gasista">
+        <img src="images/comunidad.jpg" alt="Gasista">
         <div class="carousel-caption">
           <h3>SERVICIOS SEGUROS Y RECOMENDADOS POR LA COMUNIDAD DE SERVICE ADVISOR</h3>
           <p>Profesionales recomendados por la propia comunidad</p>
