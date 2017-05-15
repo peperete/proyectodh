@@ -30,27 +30,28 @@
   }
   if (!empty($_POST)) {
 
-      $ext = pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION);
+    $ext = pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION);
 
-      $errores = $message = '';
+    $errores = $message = '';
 
-      if (!esUnaImagen($ext) || !tienePesoValido($_FILES['archivo']['size'])) {
-        $errores = 'La imagen es muy pesada o no tiene un formato valido';
+    if (!esUnaImagen($ext) || !tienePesoValido($_FILES['archivo']['size'])) {
+      $errores = 'La imagen es muy pesada o no tiene un formato valido';
+    } else {
+
+      $randomHash = md5(microtime().'foto');
+
+      $archivo = dirname(__FILE__) .'/upload/' . $randomHash . '.' . $ext;
+      $upload = move_uploaded_file($_FILES['archivo']['tmp_name'], $archivo);
+
+      if ($upload) {
+        $message = "Subio OK!";
+        $img = $archivo;
       } else {
-
-        $randomHash = md5(microtime().'foto');
-
-        $archivo = dirname(__FILE__) .'/upload/' . $randomHash . '.' . $ext;
-        $upload = move_uploaded_file($_FILES['archivo']['tmp_name'], $archivo);
-
-        if ($upload) {
-          $message = "Subio OK!";
-          $img = $archivo;
-        } else {
-          $errores = "no subio";
-        }
+        $errores = "no subio";
       }
     }
+
+  }
 ?>
 <body>
 <?php if(!empty($errores) || empty($_POST)) { ?>
@@ -101,7 +102,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <h5 style="text-align:center; color:white">
-                    <!--<input type="file" name="imgPerfil" value="imgPerfil"> -->
+                    <button type="submit" class="btn btn-prymary" style="background-color:#FF7557" value="buscarIMG" id="buscarImgg" name="submit">Insertar Foto de Perfil</button>
                   </h5>
                 </div>
               </div>
@@ -144,9 +145,9 @@
   <h4 style="text_aligne:lefth"><b>Selecciona las preguntas de Seguridad</b></h4>
 
   <div class="form-group">
-    <label class="control-label col-sm-2" for="pregunta_1">Pregunta 1</label>
-    <div class="col-sm-10">
-      <select class="form-control" name="pregunta_1">
+    <label class="control-label col-sm-4" for="pregunta_1">Pregunta 1</label>
+    <div class="col-sm-8">
+      <select class="pregunta_1" name="pregunta_1">
         <?php
         // $pregunta_1= array('1'=>'¿Cual es mi postre favorito?','2'=>'Pais que deseo conocer','3'=>'Apellido Materno de mi Padre');
         foreach ($arrayPreguntas1 as $key => $value) {
@@ -163,17 +164,17 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="pwd">Respuesta 1</label>
-    <div class="col-sm-10">
+    <label class="control-label col-sm-4" for="pwd">Respuesta 1</label>
+    <div class="col-sm-8">
       <input type="text" class="form-control" id="respuesta_1" name= "respuesta_1" placeholder="Ingresar Respuesta" required>
     </div>
   </div>
 
 
   <div class="form-group">
-    <label class="control-label col-sm-2" for="pregunta_2">Pregunta 2</label>
-    <div class="col-sm-10">
-      <select class="form-control" name="pregunta_2">
+    <label class="control-label col-sm-4" for="pregunta_2">Pregunta 2</label>
+    <div class="col-sm-8">
+      <select class="pregunta_2" name="pregunta_2">
         <?php
         foreach ($arrayPreguntas2 as $key => $value) {
           echo "<option value='". $key ."'";
@@ -189,8 +190,8 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="Respuesta_2">Respuesta 2</label>
-      <div class="col-sm-10">
+      <label class="control-label col-sm-4" for="Respuesta_2">Respuesta 2</label>
+      <div class="col-sm-8">
         <input type="text" class="form-control" id="respuesta_2_2" name= "respuesta_2" placeholder="Ingresar Respuesta" required>
       </div>
     </div>
