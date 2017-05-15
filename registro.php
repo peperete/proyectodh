@@ -98,7 +98,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <h5 style="text-align:center; color:white">
-                    <input type="file" name="imgPerfil" value="imgPerfil">
+                    <!--<input type="file" name="imgPerfil" value="imgPerfil"> -->
                   </h5>
                 </div>
               </div>
