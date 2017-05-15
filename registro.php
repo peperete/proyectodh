@@ -28,6 +28,29 @@
 			header("location:bienvenido.php");exit;
     }
   }
+  if (!empty($_POST)) {
+
+      $ext = pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION);
+
+      $errores = $message = '';
+
+      if (!esUnaImagen($ext) || !tienePesoValido($_FILES['archivo']['size'])) {
+        $errores = 'La imagen es muy pesada o no tiene un formato valido';
+      } else {
+
+        $randomHash = md5(microtime().'foto');
+
+        $archivo = dirname(__FILE__) .'/upload/' . $randomHash . '.' . $ext;
+        $upload = move_uploaded_file($_FILES['archivo']['tmp_name'], $archivo);
+
+        if ($upload) {
+          $message = "Subio OK!";
+          $img = $archivo;
+        } else {
+          $errores = "no subio";
+        }
+      }
+    }
 ?>
 <body>
   <div class="container">
@@ -118,8 +141,8 @@
   <h4 style="text_aligne:lefth"><b>Selecciona las preguntas de Seguridad</b></h4>
 
   <div class="form-group">
-    <label class="control-label col-sm-4" for="pregunta_1">Pregunta 1</label>
-    <div class="col-sm-8">
+    <label class="control-label col-sm-3" for="pregunta_1">Pregunta 1</label>
+    <div class="col-sm-9">
       <select class="pregunta_1" name="pregunta_1">
         <?php
         // $pregunta_1= array('1'=>'¿Cual es mi postre favorito?','2'=>'Pais que deseo conocer','3'=>'Apellido Materno de mi Padre');
@@ -137,16 +160,16 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-4" for="pwd">Respuesta 1</label>
-    <div class="col-sm-8">
+    <label class="control-label col-sm-3" for="pwd">Respuesta 1</label>
+    <div class="col-sm-9">
       <input type="text" class="form-control" id="respuesta_1" name= "respuesta_1" placeholder="Ingresar Respuesta" required>
     </div>
   </div>
 
 
   <div class="form-group">
-    <label class="control-label col-sm-4" for="pregunta_2">Pregunta 2</label>
-    <div class="col-sm-8">
+    <label class="control-label col-sm-3" for="pregunta_2">Pregunta 2</label>
+    <div class="col-sm-9">
       <select class="pregunta_2" name="pregunta_2">
         <?php
         foreach ($arrayPreguntas2 as $key => $value) {
@@ -163,8 +186,8 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-4" for="Respuesta_2">Respuesta 2</label>
-      <div class="col-sm-8">
+      <label class="control-label col-sm-3" for="Respuesta_2">Respuesta 2</label>
+      <div class="col-sm-9">
         <input type="text" class="form-control" id="respuesta_2_2" name= "respuesta_2" placeholder="Ingresar Respuesta" required>
       </div>
     </div>
