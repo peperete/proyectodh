@@ -25,6 +25,7 @@
 
       // Ir a página de Login
       header("location:ingresar.php"); exit;
+
     }
   }
 

@@ -28,6 +28,17 @@
       //echo 'finalizado';
 			// Ir a mensaje de Bienvenida
 			//header("location:bienvenido.php");exit;
+
+      //Mensaje datos guardados satisfactoriamente
+      echo '
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <h3 style="color: #FF7557; text-align:center">"Cambios realizados Satisfactoriamente"</h3>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+        <div class="container">
+      ';
     }
   }else{
     //Carga los datos del usuario de la sesión
@@ -50,6 +61,7 @@
     $pwdUsuario = $datosUsuario["pwd"];
 
   }
+
 ?>
 <body>
   <div class="container">
