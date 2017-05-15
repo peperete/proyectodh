@@ -215,5 +215,22 @@ $arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que dese
       $_SESSION[$key] = $value;
     }
   }
+  function esUnaImagen($ext) {
+    $ext = strtolower($ext);
+    if ($ext == 'jpg' || $ext == 'png' || $ext == 'gif' || $ext == 'svg') {
+      return TRUE;
+    }
+    return FALSE;
+  }
 
+  function tienePesoValido($size) {
+
+    $pesoMaximo = 90000000;
+    // 9 MB
+
+    if ($size > $pesoMaximo) {
+      return FALSE;
+    }
+    return TRUE;
+  }
 ?>
