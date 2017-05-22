@@ -92,7 +92,7 @@ $arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que dese
       "pregunta_2"=> $usuario["pregunta_2"],
       "respuesta_2" => $usuario["respuesta_2"],
 			"pwd" => $usuario["pwd"],
-			"id" => $usuario["id"],
+			"id" => $usuario["id"]
 		];
 		return $usuarioJS;
 	}
@@ -232,5 +232,39 @@ $arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que dese
       return FALSE;
     }
     return TRUE;
+  }
+
+  function guardarImagen ($imagen) {
+    //Proceso para subir imagen a la carpeta upload
+    //$imagen es un array que recibe a $_FILES como valor
+    //Se guarda en la carpeta "upload"
+    //Devuelve un array con status y detalle informando de un error "status=Error" o que se guardó en forma correcta "status=Guardada". En el detalle se informa el mensaje de error o el nombre del archivo guardado incluyendo su ruta.
+    $respuesta = [
+      "status"=>"Error",
+      "detalle"=>"No hay imagen"];
+    if (!empty($imagen)) {
+      $nombre=$imagen["archivo"]["name"];
+      $archivo=$imagen["archivo"]["tmp_name"];
+      $ext = pathinfo($nombre, PATHINFO_EXTENSION);
+      if (!esUnaImagen($ext) || !tienePesoValido($imagen['archivo']['size'])) {
+        $respuesta = [
+          "status" => "Error",
+          "detalle" => "La imagen es muy pesada o no tiene un formato valido"];
+      } else {
+        $nombre_hash = md5(microtime().$nombre);
+        $destino = "upload/" . $nombre_hash ."." . $ext;
+        $upload = move_uploaded_file($archivo, $destino);
+        if ($upload) {
+          $respuesta = [
+            "status" => "Guardada",
+            "detalle" => $destino];
+        } else {
+          $respuesta = [
+            "status" => "Error",
+            "detalle" => "La imagen no subió"];
+        }
+      }
+    }
+    return $respuesta;
   }
 ?>
