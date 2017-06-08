@@ -58,11 +58,6 @@ $arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que dese
     return false;
 	}
 
-  function guardarUsuario($usuario) {
-		$usuarioJSON = json_encode($usuario);
-		file_put_contents("usuarios.json", $usuarioJSON . PHP_EOL, FILE_APPEND);
-	}
-
   function crearUsuario($usuario) {
 		$usuarioJS = [
 			"nombre" => $usuario["nombre"],

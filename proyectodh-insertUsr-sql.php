@@ -36,8 +36,6 @@
         $sentencia .= ")";
 
 
-
-
         // try {
         //   $stmt = $db->prepare($sentenciaSQL["sql"]);
         //   $stmt -> execute();
