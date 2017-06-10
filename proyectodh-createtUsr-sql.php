@@ -22,11 +22,11 @@ CREATE TABLE if not exists `usuario` (
   `email` varchar(255) NOT NULL,
   `pwd` varchar(255) NOT NULL,
   `estado` varchar(255) DEFAULT NULL,
-  `foto` varchar(255) DEFAULT NULL,
-  `pregunta1` varchar(255) DEFAULT NULL,
-  `respuesta1` varchar(255) DEFAULT NULL,
-  `pregunta2` varchar(255) DEFAULT NULL,
-  `respuesta2` varchar(255) DEFAULT NULL
+  `img` varchar(255) DEFAULT NULL,
+  `pregunta_1` varchar(255) DEFAULT NULL,
+  `respuesta_1` varchar(255) DEFAULT NULL,
+  `pregunta_2` varchar(255) DEFAULT NULL,
+  `respuesta_2` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 
 $sentenciaSQL2="ALTER TABLE `usuario`
