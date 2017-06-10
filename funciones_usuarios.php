@@ -159,7 +159,7 @@
 
     private function existeElUsuario($modo = "json"){
       $email = $this->email;
-      if ($modo = "json") {
+      if ($modo == "json") {
         if (file_exists("usuarios.json")) {
           //cargo en un string el contenido del archivo de usuarios. Son lineas con json
           $usuarios = file_get_contents("usuarios.json");
@@ -193,7 +193,7 @@
     }
 
     function guardarUsuario($modo="json") {
-      if ($modo = "json") {
+      if ($modo == "json") {
     		$this->id = $this->traerNuevoId();
         $usuarioJSON = json_encode(get_object_vars($this));
     		file_put_contents("usuarios.json", $usuarioJSON . PHP_EOL, FILE_APPEND);
@@ -203,7 +203,7 @@
       }
   	}
 
-    function validarIngresoUsuario ($cpwd, $modo="json"){
+    function validarIngresoUsuario ($pwd, $modo="json"){
       $errores = [];
       $mailOk = false;
       if ($this->email == ""){
@@ -216,7 +216,7 @@
         }
       }
       $pwdOk = false;
-      if (trim($this->pwd) == ""){
+      if (trim($pwd) == ""){
   			$errores[] = "Debe ingresar su password";
   		} else {
         if (!$this->existeElUsuario($modo)) {
@@ -226,13 +226,41 @@
         }
       }
       if ($mailOk && $pwdOk) {
-        if (!password_verify($usuario["pwd"], datosUsuario($usuario["email"])["pwd"])) {
+        $pwd_guardada = $this->datosUsuario($modo)["pwd"];
+        if (!password_verify($pwd, $pwd_guardada)) {
           $errores[] = "La password es incorrecta";
+        } else {
+          $this->pwd = $pwd_guardada;
         }
       }
-
   		return $errores;
     }
+
+    //Dado un Usuario, devuelve un array con sus atributos
+    function datosUsuario($modo){
+      $email = $this->email;
+      if ($modo == "json") {
+        if (file_exists("usuarios.json")) {
+          //cargo en un string el contenido del archivo de usuarios. Son lineas con json
+          $usuarios = file_get_contents("usuarios.json");
+          //cargo un array de strings, separadas por caracter de fin de linea php
+      		$usuariosArray = explode(PHP_EOL, $usuarios);
+          //elimino el último componente del array, que corresponde con el caracter de fin de archivo
+      		//array_pop($usuariosArray);
+      		foreach ($usuariosArray as $key => $usuario) {
+      			$usuarioArray = json_decode($usuario, true);
+      			if ($email == $usuarioArray["email"]){
+      				return $usuarioArray;
+      			}
+      		}
+        }
+      } else {// modo = "db"
+        //*************************** HACER DB!!!!!!
+
+      }
+
+      return "";
+  	}
 
 
   }
@@ -278,24 +306,7 @@
 
 
 
-  //Dado el registro con los datos de un usuario guardados en el archivo json
-  function datosUsuario($email){
-    if (file_exists("usuarios.json")) {
-      //cargo en un string el contenido del archivo de usuarios. Son lineas con json
-      $usuarios = file_get_contents("usuarios.json");
-      //cargo un array de strings, separadas por caracter de fin de linea php
-  		$usuariosArray = explode(PHP_EOL, $usuarios);
-      //elimino el último componente del array, que corresponde con el caracter de fin de archivo
-  		//array_pop($usuariosArray);
-  		foreach ($usuariosArray as $key => $usuario) {
-  			$usuarioArray = json_decode($usuario, true);
-  			if ($email == $usuarioArray["email"]){
-  				return $usuarioArray;
-  			}
-  		}
-    }
-    return "";
-	}
+
 
   function validarEmail ($usuario){
     $errores = [];

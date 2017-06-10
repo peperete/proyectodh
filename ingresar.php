@@ -3,15 +3,17 @@
   include_once ("funciones_usuarios.php");
   $emailUsuario  = $pwdUsuario = "";
   if (!empty($_POST)) {
+    $objUsr = new Usuario($_POST);
     $emailUsuario = $_POST["email"];
     $pwdUsuario = $_POST["pwd"];
     $recordame = isset($_POST["recordame"]);
 
     // Validar usuario
-    $erroresIngreso = validarIngresoUsuario($_POST);
+    $erroresIngreso = $objUsr->validarIngresoUsuario($pwdUsuario, $modo);
     // Guardar los datos en SESSION
     if (empty($erroresIngreso)) {
-      $datosUsr = datosUsuario($emailUsuario);
+
+      $datosUsr = $objUsr->datosUsuario($modo);
       $_SESSION["nombre"] = $datosUsr["nombre"];
       $_SESSION["apellido"] = $datosUsr["apellido"];
       $_SESSION["email"] = $datosUsr["email"];
