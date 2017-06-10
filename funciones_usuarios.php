@@ -258,11 +258,33 @@
         //*************************** HACER DB!!!!!!
 
       }
-
       return "";
   	}
 
+    function reescribirUsuario($modo="json"){
+      $datosUsuario = get_object_vars($this);
+      if ($modo == "json") {
+        //cargo en un string el contenido del archivo de usuarios. Son lineas con json
+        $usuarios = file_get_contents("usuarios.json");
+        //cargo un array de strings, separadas por caracter de fin de linea php
+        $usuariosArray = explode(PHP_EOL, $usuarios);
+        //elimino el último componente del array, que corresponde con el caracter de fin de archivo
+        //array_pop($usuariosArray);
+        foreach ($usuariosArray as $key => $usuario) {
+          $usuarioArray = json_decode($usuario, true);
+          if ($datosUsuario['email'] == $usuarioArray['email']){
+            $usuariosArray[$key] = json_encode($datosUsuario);
+          }else{
+            $usuariosArray[$key] = $usuario;
+          }
+        }
+        $usuarioJSON= implode(PHP_EOL, $usuariosArray);
+        file_put_contents("usuarios.json", $usuarioJSON);
+      } else {// modo = "db"
+        //*************************** HACER DB!!!!!!
 
+      }
+    }
   }
   // ************** FIN CLASE USUARIO
 
@@ -282,31 +304,6 @@
 		];
 		return $usuarioJS;
 	}
-
-  function reescribirUsuario($datosUsuario){
-
-    //cargo en un string el contenido del archivo de usuarios. Son lineas con json
-    $usuarios = file_get_contents("usuarios.json");
-    //cargo un array de strings, separadas por caracter de fin de linea php
-    $usuariosArray = explode(PHP_EOL, $usuarios);
-    //elimino el último componente del array, que corresponde con el caracter de fin de archivo
-    //array_pop($usuariosArray);
-    foreach ($usuariosArray as $key => $usuario) {
-      $usuarioArray = json_decode($usuario, true);
-      if ($datosUsuario['id'] == $usuarioArray["id"]){
-        $usuariosArray[$key] = json_encode($datosUsuario);
-      }else{
-        $usuariosArray[$key] = $usuario;
-      }
-    }
-    $usuarioJSON= implode(PHP_EOL, $usuariosArray);
-    file_put_contents("usuarios.json", $usuarioJSON);
-
-  }
-
-
-
-
 
   function validarEmail ($usuario){
     $errores = [];
@@ -345,6 +342,7 @@
       $_SESSION[$key] = $value;
     }
   }
+
   function esUnaImagen($ext) {
     $ext = strtolower($ext);
     if ($ext == 'jpg' || $ext == 'png' || $ext == 'gif' || $ext == 'svg') {

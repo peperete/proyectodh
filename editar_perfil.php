@@ -4,6 +4,7 @@
   $nombreUsuario = $apellidoUsuario = $emailUsuario = $telfijoUsuario = $celularUsuario = $img = "";
 
   if (!empty($_POST)) {
+    $usuario = new Usuario($_POST);
     $nombreUsuario = $_POST["nombre"];
     $apellidoUsuario = $_POST["apellido"];
     $telfijoUsuario = $_POST["telfijo"];
@@ -17,20 +18,19 @@
     $pwdUsuario = $_POST["pwd"];
 
     // Validar usuario
-    $erroresRegistro = validarRegistroUsuario($_POST, true);
+    $erroresRegistro = $usuario->validarRegistroUsuario("", $modo, true);
 
-    //print_r($erroresRegistro);
     if (empty($erroresRegistro)) {
-      $usuario = modificarUsuario($_POST);
+      // $usuario = modificarUsuario($_POST);
 
       //Proceso para subir imagen a la carpeta upload
       if (!empty($_FILES)) {
         $guardar = guardarImagen($_FILES);
         if ($guardar["status"] = "Guardada") {
           $img = $guardar["detalle"];
-          $usuario["img"] = $img;
-    			//Guardar al usuario en un JSON y Archivo
-    			reescribirUsuario($usuario);
+          $usuario->setImg($img);
+    			//Guardar al usuario
+    			$usuario->reescribirUsuario($modo);
 
           //Mensaje datos guardados satisfactoriamente
       		header("location:perfilCambiado.php");exit;
@@ -43,7 +43,8 @@
     //Carga los datos del usuario de la sesión
 
     //print_r($_SESSION);
-    $datosUsuario = datosUsuario($_SESSION['email']);
+    $usuario = new Usuario($_SESSION);
+    $datosUsuario = $usuario->datosUsuario($modo);
     //print_r($datosUsuario);
     //print_r($arrayPreguntas1);
 
