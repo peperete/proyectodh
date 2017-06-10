@@ -19,41 +19,28 @@
       $archivoJson = file_get_contents("usuarios.json");
       //cargo un array de strings, separadas por caracter de fin de linea php
       $arraySQL = explode(PHP_EOL, $archivoJson);
-      //elimino el último componente del array, que corresponde con el caracter de fin de archivo
-      //array_pop($usuariosArray);
       foreach ($arraySQL as $key => $value) {
         $sentenciaSQL = json_decode($value, true);
-        echo "<PRE>";
-        var_dump($sentenciaSQL);
-        $sentencia = "INSERT INTO usuario (";
-        foreach ($sentenciaSQL as $campo => $valor) {
-          $sentencia .= $campo . ",";
+        $campos = $valores = "";
+        if ($sentenciaSQL) {
+          foreach ($sentenciaSQL as $campo => $valor) {
+            $campos = $campos . $campo . ",";
+            $valores = $valores . "'".$valor . "',";
+          }
+          $campos = substr($campos, 0, strlen($campos)-1);
+          $valores = substr($valores, 0, strlen($valores)-1);
+          $sentencia = "INSERT INTO usuario (" . $campos . ") VALUES (" . $valores. ")";
         }
-        $sentencia .= ") VALUES (";
-        foreach ($sentenciaSQL as $campo => $valor) {
-          $sentencia .= $valor . ",";
+
+        try {
+          $stmt = $db->prepare($sentencia);
+          $stmt -> execute();
+          echo "Ejecuté la sentencia sql: <br>" . $sentencia . "<br>";
+        } catch (PDOException $exception) {
+          echo $exception->getMessage();
         }
-        $sentencia .= ")";
-
-
-
-
-        // try {
-        //   $stmt = $db->prepare($sentenciaSQL["sql"]);
-        //   $stmt -> execute();
-        //   echo  $sentenciaSQL["sql"] . "<br>";
-        //   echo "<PRE>";
-        //   // print_r($rows);
-        // } catch (PDOException $exception) {
-        //   echo $exception->getMessage();
-        // }
 
       }
-      echo $sentencia;
+
     }
-
-
-
-
-
 ?>
