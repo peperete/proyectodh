@@ -1,79 +1,242 @@
 <?php
-$arrayPreguntas1= array('1'=>'¿Cual es mi postre favorito?','2'=>'Pais que deseo conocer','3'=>'Apellido Materno de mi madre');
-$arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que deseo conocer','3'=>'Apellido Materno de mi Padre');
+  $arrayPreguntas1= array('1'=>'¿Cual es mi postre favorito?','2'=>'Pais que deseo conocer','3'=>'Apellido Materno de mi madre');
+  $arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que deseo conocer','3'=>'Apellido Materno de mi Padre');
 
-  function validarRegistroUsuario ($usuario, $usuarioModificar=false){
-    $errores = [];
+  // Definición Clase Usuario
+  // Contendrá todas las funciones actuales
+  class Usuario {
+    private $nombre;
+    private $apellido;
+    private $telfijo;
+    private $celular;
+    private $email;
+    private $pregunta_1;
+    private $respuesta_1;
+    private $pregunta_2;
+    private $respuesta_2;
+    private $pwd;
+    private $id;
+    private $img;
 
-		if (trim($usuario["nombre"]) == "")	{
-			$errores[] = "Debe ingresar un nombre";
-		}
-		if (trim($usuario["apellido"]) == ""){
-			$errores[] = "Debe ingresar un apellido";
-		}
-    if($usuarioModificar==false){
-  		if (trim($usuario["pwd"]) == ""){
-  			$errores[] = "Debe ingresar su password";
+    function __construct($usuario) {
+  		$this->nombre = !empty($usuario["nombre"])?$usuario["nombre"]: "";
+  		$this->apellido = !empty($usuario["apellido"])?$usuario["apellido"]: "";
+      $this->telfijo = !empty($usuario["telfijo"])?$usuario["telfijo"]: "";
+  		$this->celular = !empty($usuario["celular"])?$usuario["celular"]: "";
+      $this->email = !empty($usuario["email"])?$usuario["email"]: "";
+      $this->pregunta_1 = !empty($usuario["pregunta_1"])?$usuario["pregunta_1"]: "";
+      $this->respuesta_1 = !empty($usuario["respuesta_1"])?$usuario["respuesta_1"]: "";
+      $this->pregunta_2 = !empty($usuario["pregunta_2"])?$usuario["pregunta_2"]: "";
+      $this->respuesta_2 = !empty($usuario["respuesta_2"])?$usuario["respuesta_2"]: "";
+  		$this->pwd = !empty($usuario["pwd"])?password_hash($usuario["pwd"], PASSWORD_DEFAULT): "";
+  	}
+
+    function setNombre($nombre) {
+      $this->nombre = $nombre;
+    }
+
+    function getNombre() {
+      return $this->nombre;
+    }
+
+    function setApellido($apellido) {
+      $this->apellido = $apellido;
+    }
+
+    function getApellido() {
+      return $this->apellido;
+    }
+
+    function setTelfijo($telfijo) {
+      $this->telfijo = $telfijo;
+    }
+
+    function getTelfijo() {
+      return $this->telfijo;
+    }
+
+    function setCelular($celular) {
+      $this->celular = $celular;
+    }
+
+    function getCelular() {
+      return $this->celular;
+    }
+
+    function setEmail($email) {
+      $this->email = $email;
+    }
+
+    function getEmail() {
+      return $this->email;
+    }
+
+    function setPregunta_1($pregunta_1) {
+      $this->pregunta_1 = $pregunta_1;
+    }
+
+    function getPregunta_1() {
+      return $this->pregunta_1;
+    }
+
+    function setRespuesta_1($respuesta_1) {
+      $this->respuesta_1 = $respuesta_1;
+    }
+
+    function getRespuesta_1() {
+      return $this->respuesta_1;
+    }
+
+    function setPregunta_2($pregunta_2) {
+      $this->pregunta_2 = $pregunta_2;
+    }
+
+    function getPregunta_2() {
+      return $this->pregunta_2;
+    }
+
+    function setRespuesta_2($respuesta_2) {
+      $this->respuesta_2 = $respuesta_2;
+    }
+
+    function getRespuesta_2() {
+      return $this->respuesta_2;
+    }
+
+    function setPwd($pwd) {
+      $this->pwd = password_hash($pwd, PASSWORD_DEFAULT);
+    }
+
+    function getPwd() {
+      return $this->pwd;
+    }
+
+    function setImg($img) {
+      $this->img = $img;
+    }
+
+    function getImg() {
+      return $this->img;
+    }
+
+    function validarRegistroUsuario ($cpwd, $modo="json", $usuarioModificar=false){
+      $errores = [];
+
+  		if (trim($this->nombre) == "")	{
+  			$errores[] = "Debe ingresar un nombre";
   		}
-  		if (trim($usuario["cpwd"]) == ""){
-  			$errores[] = "Debe reingresar su password";
+  		if (trim($this->apellido) == ""){
+  			$errores[] = "Debe ingresar un apellido";
   		}
-  		if ($usuario["pwd"] != $usuario["cpwd"]){
-  			$errores[] = "Error en la validación de password, deben ser iguales";
+      if($usuarioModificar==false){
+    		if (trim($this->pwd) == ""){
+    			$errores[] = "Debe ingresar su password";
+    		}
+    		if (trim($cpwd) == ""){
+    			$errores[] = "Debe reingresar su password";
+    		}
+    		if (!password_verify($cpwd, $this->pwd)){
+    			$errores[] = "Error en la validación de password, deben ser iguales";
+    		}
+    		if ($this->email == ""){
+    			$errores[] = "Debe ingresar su email";
+    		}
+    		if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)){
+    			$errores[] = "El mail ingresado no es válido";
+    		}
+    		if ($this->existeElUsuario($modo)) {
+    			$errores[] = "El Usuario ya está registrado previamente";
+    		}
+      }
+      if ($this->respuesta_1 == ""){
+  			$errores[] = "Debe responder pregunta 1";
   		}
-  		if ($usuario["email"] == ""){
+      if ($this->respuesta_2 == ""){
+  			$errores[] = "Debe responder pregunta 2";
+  		}
+  		return $errores;
+    }
+
+    private function existeElUsuario($modo = "json"){
+      $email = $this->email;
+      if ($modo = "json") {
+        if (file_exists("usuarios.json")) {
+          //cargo en un string el contenido del archivo de usuarios. Son lineas con json
+          $usuarios = file_get_contents("usuarios.json");
+          //cargo un array de strings, separadas por caracter de fin de linea php
+      		$usuariosArray = explode(PHP_EOL, $usuarios);
+          //elimino el último componente del array, que corresponde con el caracter de fin de archivo
+      		//array_pop($usuariosArray);
+      		foreach ($usuariosArray as $key => $usuario) {
+      			$usuarioArray = json_decode($usuario, true);
+      			if ($email == $usuarioArray["email"]){
+      				return true;
+      			}
+      		}
+        }
+        return false;
+      } else { // modo = "db"
+        //*************************** HACER DB!!!!!!
+
+      }
+  	}
+
+    private function traerNuevoId () {
+      if (!file_exists("ultimoUsuario.txt")) {
+        $nuevoId = "1";
+      } else {
+        $nuevoId = trim(file_get_contents ("ultimoUsuario.txt"));
+        $nuevoId++;
+      }
+      file_put_contents("ultimoUsuario.txt", $nuevoId . PHP_EOL);
+      return $nuevoId;
+    }
+
+    function guardarUsuario($modo="json") {
+      if ($modo = "json") {
+    		$this->id = $this->traerNuevoId();
+        $usuarioJSON = json_encode(get_object_vars($this));
+    		file_put_contents("usuarios.json", $usuarioJSON . PHP_EOL, FILE_APPEND);
+      } else { // modo = "db"
+        //*************************** HACER DB!!!!!!
+
+      }
+  	}
+
+    function validarIngresoUsuario ($cpwd, $modo="json"){
+      $errores = [];
+      $mailOk = false;
+      if ($this->email == ""){
   			$errores[] = "Debe ingresar su email";
-  		}
-  		if (!filter_var($usuario["email"], FILTER_VALIDATE_EMAIL)){
-  			$errores[] = "El mail ingresado no es válido";
-  		}
-  		if (existeElUsuario($usuario["email"])) {
-  			$errores[] = "El Usuario ya está registrado previamente";
-  		}
+  		} else {
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)){
+    			$errores[] = "El mail ingresado no es válido";
+    		} else {
+          $mailOk = true;
+        }
+      }
+      $pwdOk = false;
+      if (trim($this->pwd) == ""){
+  			$errores[] = "Debe ingresar su password";
+  		} else {
+        if (!$this->existeElUsuario($modo)) {
+    			$errores[] = "El Usuario no está registrado";
+    		} else {
+          $pwdOk = true;
+        }
+      }
+      if ($mailOk && $pwdOk) {
+        if (!password_verify($usuario["pwd"], datosUsuario($usuario["email"])["pwd"])) {
+          $errores[] = "La password es incorrecta";
+        }
+      }
+
+  		return $errores;
     }
-    if ($usuario["respuesta_1"] == ""){
-			$errores[] = "Debe responder pregunta 1";
-		}
-    if ($usuario["respuesta_2"] == ""){
-			$errores[] = "Debe responder pregunta 2";
-		}
-		return $errores;
+
+
   }
-
-  function existeElUsuario($email){
-    if (file_exists("usuarios.json")) {
-      //cargo en un string el contenido del archivo de usuarios. Son lineas con json
-      $usuarios = file_get_contents("usuarios.json");
-      //cargo un array de strings, separadas por caracter de fin de linea php
-  		$usuariosArray = explode(PHP_EOL, $usuarios);
-      //elimino el último componente del array, que corresponde con el caracter de fin de archivo
-  		//array_pop($usuariosArray);
-  		foreach ($usuariosArray as $key => $usuario) {
-  			$usuarioArray = json_decode($usuario, true);
-  			if ($email == $usuarioArray["email"]){
-  				return true;
-  			}
-  		}
-    }
-    return false;
-	}
-
-  function crearUsuario($usuario) {
-		$usuarioJS = [
-			"nombre" => $usuario["nombre"],
-			"apellido" => $usuario["apellido"],
-      "telfijo" => $usuario["telfijo"],
-			"celular" => $usuario["celular"],
-      "email" => $usuario["email"],
-      "pregunta_1"=> $usuario["pregunta_1"],
-      "respuesta_1" => $usuario["respuesta_1"],
-      "pregunta_2"=> $usuario["pregunta_2"],
-      "respuesta_2" => $usuario["respuesta_2"],
-			"pwd" => password_hash($usuario["pwd"], PASSWORD_DEFAULT),
-			"id" => traerNuevoId()
-		];
-		return $usuarioJS;
-	}
+  // ************** FIN CLASE USUARIO
 
   function modificarUsuario($usuario) {
 		$usuarioJS = [
@@ -113,47 +276,7 @@ $arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que dese
 
   }
 
-  function traerNuevoId () {
-    if (!file_exists("ultimoUsuario.txt")) {
-      $nuevoId = "1";
-    } else {
-      $nuevoId = trim(file_get_contents ("ultimoUsuario.txt"));
-      $nuevoId++;
-    }
-    file_put_contents("ultimoUsuario.txt", $nuevoId . PHP_EOL);
-    return $nuevoId;
-  }
 
-  function validarIngresoUsuario ($usuario){
-    $errores = [];
-    $mailOk = false;
-    if ($usuario["email"] == ""){
-			$errores[] = "Debe ingresar su email";
-		} else {
-      if (!filter_var($usuario["email"], FILTER_VALIDATE_EMAIL)){
-  			$errores[] = "El mail ingresado no es válido";
-  		} else {
-        $mailOk = true;
-      }
-    }
-    $pwdOk = false;
-    if (trim($usuario["pwd"]) == ""){
-			$errores[] = "Debe ingresar su password";
-		} else {
-      if (!existeElUsuario($usuario["email"])) {
-  			$errores[] = "El Usuario no está registrado";
-  		} else {
-        $pwdOk = true;
-      }
-    }
-    if ($mailOk && $pwdOk) {
-      if (!password_verify($usuario["pwd"], datosUsuario($usuario["email"])["pwd"])) {
-        $errores[] = "La password es incorrecta";
-      }
-    }
-
-		return $errores;
-  }
 
   //Dado el registro con los datos de un usuario guardados en el archivo json
   function datosUsuario($email){
@@ -173,6 +296,7 @@ $arrayPreguntas2= array('1'=>'¿Cual es mi fruta favorita?','2'=>'lugar que dese
     }
     return "";
 	}
+
   function validarEmail ($usuario){
     $errores = [];
     $mailOk = false;

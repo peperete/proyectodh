@@ -1,12 +1,8 @@
 <?php
   session_start();
   $nombre_usuario = "";
-  // echo "<PRE>";
-  // echo "Cookie: <br>";
-  // print_r($_COOKIE);
-  // echo "Session: <br>";
-  // print_r($_SESSION);
-  // echo "</PRE>";
+  // modo indica el mecanismo para persistir los datos, los valores podrán ser "json" o "db"
+  $modo = "json";
   if (isset($_COOKIE["nombre"])) {
     $nombre_usuario = $_COOKIE["nombre"];
     // echo "hay nombre en cookie";
