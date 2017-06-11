@@ -9,11 +9,11 @@
     $recordame = isset($_POST["recordame"]);
 
     // Validar usuario
-    $erroresIngreso = $objUsr->validarIngresoUsuario($pwdUsuario, $modo);
+    $erroresIngreso = $objUsr->validarIngresoUsuario($pwdUsuario, $modo, $db);
     // Guardar los datos en SESSION
     if (empty($erroresIngreso)) {
 
-      $datosUsr = $objUsr->datosUsuario($modo);
+      $datosUsr = $objUsr->datosUsuario($modo, $db);
       $_SESSION["nombre"] = $datosUsr["nombre"];
       $_SESSION["apellido"] = $datosUsr["apellido"];
       $_SESSION["email"] = $datosUsr["email"];

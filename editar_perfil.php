@@ -18,7 +18,7 @@
     $pwdUsuario = $_POST["pwd"];
 
     // Validar usuario
-    $erroresRegistro = $usuario->validarRegistroUsuario("", $modo, true);
+    $erroresRegistro = $usuario->validarRegistroUsuario("", $modo, $db, true);
 
     if (empty($erroresRegistro)) {
       // $usuario = modificarUsuario($_POST);
@@ -30,7 +30,7 @@
           $img = $guardar["detalle"];
           $usuario->setImg($img);
     			//Guardar al usuario
-    			$usuario->reescribirUsuario($modo);
+    			$usuario->reescribirUsuario($modo, $db);
 
           //Mensaje datos guardados satisfactoriamente
       		header("location:perfilCambiado.php");exit;
@@ -44,8 +44,8 @@
 
     //print_r($_SESSION);
     $usuario = new Usuario($_SESSION);
-    $datosUsuario = $usuario->datosUsuario($modo);
-    //print_r($datosUsuario);
+    $datosUsuario = $usuario->datosUsuario($modo, $db);
+    // print_r($datosUsuario);
     //print_r($arrayPreguntas1);
 
     $nombreUsuario = $datosUsuario["nombre"];

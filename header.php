@@ -2,7 +2,24 @@
   session_start();
   $nombre_usuario = "";
   // modo indica el mecanismo para persistir los datos, los valores podrán ser "json" o "db"
-  $modo = "json";
+  $modo = "db";
+
+  if ($modo == "db") {
+    $dbname = 'proyectodh';
+    $host = 'localhost';
+    $port = '3306';
+    $dsn = 'mysql:host=' . $host . ';dbname='. $dbname . ';charset=utf8mb4;port:' . $port;
+    $usrName = 'root';
+    $passw = '';
+    try {
+      $db = new PDO ($dsn, $usrName, $passw);
+    } catch (PDOException $exception) {
+      echo $exception->getMessage();
+    }
+  } else {
+    $db = "";
+  }
+
   if (isset($_COOKIE["nombre"])) {
     $nombre_usuario = $_COOKIE["nombre"];
     // echo "hay nombre en cookie";

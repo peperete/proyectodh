@@ -12,8 +12,6 @@
       echo $exception->getMessage();
     }
 
-
-
     if (file_exists("usuarios.json")) {
       //cargo en un string el contenido del archivo de usuarios. Son lineas con json
       $archivoJson = file_get_contents("usuarios.json");
@@ -31,7 +29,6 @@
           $valores = substr($valores, 0, strlen($valores)-1);
           $sentencia = "INSERT INTO usuario (" . $campos . ") VALUES (" . $valores. ")";
         }
-
         try {
           $stmt = $db->prepare($sentencia);
           $stmt -> execute();
@@ -39,7 +36,6 @@
         } catch (PDOException $exception) {
           echo $exception->getMessage();
         }
-
       }
 
     }

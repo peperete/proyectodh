@@ -119,7 +119,7 @@
       return $this->img;
     }
 
-    function validarRegistroUsuario ($cpwd, $modo="json", $usuarioModificar=false){
+    function validarRegistroUsuario ($cpwd, $modo="json", $db, $usuarioModificar=false){
       $errores = [];
 
   		if (trim($this->nombre) == "")	{
@@ -144,7 +144,7 @@
     		if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)){
     			$errores[] = "El mail ingresado no es válido";
     		}
-    		if ($this->existeElUsuario($modo)) {
+    		if ($this->existeElUsuario($modo, $db)) {
     			$errores[] = "El Usuario ya está registrado previamente";
     		}
       }
@@ -157,7 +157,7 @@
   		return $errores;
     }
 
-    private function existeElUsuario($modo = "json"){
+    private function existeElUsuario($modo = "json", $db){
       $email = $this->email;
       if ($modo == "json") {
         if (file_exists("usuarios.json")) {
@@ -176,8 +176,14 @@
         }
         return false;
       } else { // modo = "db"
-        //*************************** HACER DB!!!!!!
-
+        $sentencia = "SELECT email FROM usuario WHERE usuario.email = '" . $email . "'";
+        $stmt = $db->prepare($sentencia);
+        $stmt -> execute();
+        if ($stmt->rowCount() > 0) {
+          return true;
+        } else {
+          return false;
+        }
       }
   	}
 
@@ -192,18 +198,36 @@
       return $nuevoId;
     }
 
-    function guardarUsuario($modo="json") {
+    function guardarUsuario($modo="json", $db) {
       if ($modo == "json") {
     		$this->id = $this->traerNuevoId();
         $usuarioJSON = json_encode(get_object_vars($this));
     		file_put_contents("usuarios.json", $usuarioJSON . PHP_EOL, FILE_APPEND);
       } else { // modo = "db"
-        //*************************** HACER DB!!!!!!
+        $sentencia = "INSERT INTO usuario (nombre, apellido, email, telfijo, celular, pregunta_1, respuesta_1, pregunta_2, respuesta_2, pwd, img) VALUES (:nombre, :apellido, :email, :telfijo, :celular, :pregunta_1, :respuesta_1, :pregunta_2, :respuesta_2, :pwd, :img)";
+        $stmt = $db->prepare($sentencia);
+        $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':apellido', $this->apellido, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
+        $stmt->bindParam(':telfijo', $this->telfijo, PDO::PARAM_STR);
+        $stmt->bindParam(':celular', $this->celular, PDO::PARAM_STR);
+        $stmt->bindParam(':pregunta_1', $this->pregunta_1, PDO::PARAM_STR);
+        $stmt->bindParam(':respuesta_1', $this->respuesta_1, PDO::PARAM_STR);
+        $stmt->bindParam(':pregunta_2', $this->pregunta_2, PDO::PARAM_STR);
+        $stmt->bindParam(':respuesta_2', $this->respuesta_2, PDO::PARAM_STR);
+        $stmt->bindParam(':pwd', $this->pwd, PDO::PARAM_STR);
+        $stmt->bindParam(':img', $this->img, PDO::PARAM_STR);
+        $stmt -> execute();
+        if ($stmt->rowCount() > 0) {
+          return true;
+        } else {
+          return false;
+        }
 
       }
   	}
 
-    function validarIngresoUsuario ($pwd, $modo="json"){
+    function validarIngresoUsuario ($pwd, $modo="json", $db){
       $errores = [];
       $mailOk = false;
       if ($this->email == ""){
@@ -219,14 +243,14 @@
       if (trim($pwd) == ""){
   			$errores[] = "Debe ingresar su password";
   		} else {
-        if (!$this->existeElUsuario($modo)) {
+        if (!$this->existeElUsuario($modo, $db)) {
     			$errores[] = "El Usuario no está registrado";
     		} else {
           $pwdOk = true;
         }
       }
       if ($mailOk && $pwdOk) {
-        $pwd_guardada = $this->datosUsuario($modo)["pwd"];
+        $pwd_guardada = $this->datosUsuario($modo, $db)["pwd"];
         if (!password_verify($pwd, $pwd_guardada)) {
           $errores[] = "La password es incorrecta";
         } else {
@@ -237,7 +261,7 @@
     }
 
     //Dado un Usuario, devuelve un array con sus atributos
-    function datosUsuario($modo){
+    function datosUsuario($modo, $db){
       $email = $this->email;
       if ($modo == "json") {
         if (file_exists("usuarios.json")) {
@@ -255,21 +279,21 @@
       		}
         }
       } else {// modo = "db"
-        //*************************** HACER DB!!!!!!
-
+        $sentencia = "SELECT * FROM usuario WHERE usuario.email = '" . $email . "'";
+        $stmt = $db->prepare($sentencia);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
       }
       return "";
   	}
 
-    function reescribirUsuario($modo="json"){
+    function reescribirUsuario($modo="json", $db){
       $datosUsuario = get_object_vars($this);
       if ($modo == "json") {
         //cargo en un string el contenido del archivo de usuarios. Son lineas con json
         $usuarios = file_get_contents("usuarios.json");
         //cargo un array de strings, separadas por caracter de fin de linea php
         $usuariosArray = explode(PHP_EOL, $usuarios);
-        //elimino el último componente del array, que corresponde con el caracter de fin de archivo
-        //array_pop($usuariosArray);
         foreach ($usuariosArray as $key => $usuario) {
           $usuarioArray = json_decode($usuario, true);
           if ($datosUsuario['email'] == $usuarioArray['email']){
@@ -281,8 +305,26 @@
         $usuarioJSON= implode(PHP_EOL, $usuariosArray);
         file_put_contents("usuarios.json", $usuarioJSON);
       } else {// modo = "db"
-        //*************************** HACER DB!!!!!!
-
+        $sentencia = "UPDATE usuario SET nombre=:nombre, apellido=:apellido, email=:email, telfijo=:telfijo, celular=:celular, pregunta_1=:pregunta_1, respuesta_1=:respuesta_1, pregunta_2=:pregunta_2, respuesta_2=:respuesta_2, pwd=:pwd, img=:img) WHERE usuario.email = '" . $this->email . "'";
+        $stmt = $db->prepare($sentencia);
+        $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':apellido', $this->apellido, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
+        $stmt->bindParam(':telfijo', $this->telfijo, PDO::PARAM_STR);
+        $stmt->bindParam(':celular', $this->celular, PDO::PARAM_STR);
+        $stmt->bindParam(':pregunta_1', $this->pregunta_1, PDO::PARAM_STR);
+        $stmt->bindParam(':respuesta_1', $this->respuesta_1, PDO::PARAM_STR);
+        $stmt->bindParam(':pregunta_2', $this->pregunta_2, PDO::PARAM_STR);
+        $stmt->bindParam(':respuesta_2', $this->respuesta_2, PDO::PARAM_STR);
+        $stmt->bindParam(':pwd', $this->pwd, PDO::PARAM_STR);
+        $stmt->bindParam(':img', $this->img, PDO::PARAM_STR);
+        $stmt->execute();
+        echo "La sentencia sql es: " . $sentencia . "<br>";
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        echo "<PRE>";
+        print_r($resultado);
+        echo "</PRE>";
+        die();
       }
     }
   }
