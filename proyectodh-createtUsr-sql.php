@@ -1,6 +1,6 @@
 <?php
 
-    $dbname = 'proyectodh';
+    $dbname = 'mysql';
     $host = 'localhost';
     $port = '3306';
     $dsn = 'mysql:host=' . $host . ';dbname='. $dbname . ';charset=utf8mb4;port:' . $port;
@@ -11,7 +11,7 @@
     } catch (PDOException $exception) {
       echo $exception->getMessage();
     }
-
+    $sentenciaSQL0 = "create database if not EXISTS proyectodh; use proyectodh;";
     $sentenciaSQL="
 CREATE TABLE if not exists `usuario` (
   `id` int(11) NOT NULL,
@@ -33,6 +33,9 @@ $sentenciaSQL2="ALTER TABLE `usuario`
 ADD PRIMARY KEY if not exists (`id`),  ADD UNIQUE KEY if not exists `email_UNIQUE` (`email`);";
 
         try {
+          $stmt = $db->prepare($sentenciaSQL0);
+          $stmt -> execute();
+          echo  $sentenciaSQL0 . "<br>";
           $stmt = $db->prepare($sentenciaSQL);
           $stmt -> execute();
           echo  $sentenciaSQL . "<br>";
