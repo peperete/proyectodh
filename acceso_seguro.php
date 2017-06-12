@@ -7,29 +7,20 @@
     $errores = validarCambioPwd($_POST["pwd1"], $_POST["pwd2"]);
     if (empty($errores)) {
       // cambiar las passw del usuario en su registro
-      $datosUsuario["id"] = $_SESSION["id"];
       // utilizo otra variable distinta de nombre para que no lo tome como logueado el header
-      $datosUsuario["nombre"] = $_SESSION["nombre_usr"];
-      $datosUsuario["apellido"] = $_SESSION["apellido"];
-      $datosUsuario["telfijo"] = $_SESSION["telfijo"];
-      $datosUsuario["celular"] = $_SESSION["celular"];
-      $datosUsuario["email"] = $_SESSION["email"];
-      $datosUsuario["pregunta_1"] = $_SESSION["pregunta_1"];
-      $datosUsuario["respuesta_1"] = $_SESSION["respuesta_1"];
-      $datosUsuario["pregunta_2"] = $_SESSION["pregunta_2"];
-      $datosUsuario["respuesta_2"] = $_SESSION["respuesta_2"];
-      $datosUsuario["pwd"] = password_hash($_POST["pwd1"], PASSWORD_DEFAULT);
-      reescribirUsuario($datosUsuario);
+      // $datosUsuario["nombre"] = $_SESSION["nombre_usr"];
+
+      $usuario = new Usuario($_SESSION);
+      $usuario->setNombre($_SESSION["apellido"]);
+      $usuario->setPwd($_POST["pwd1"]);
+      $usuario->reescribirUsuario($modo, $db);
       // cambio el dato pwd de la sesion a la nueva pwd
-      $_SESSION["pwd"] = $datosUsuario["pwd"];
+      $_SESSION["pwd"] = $usuario->getPwd();
 
       // Ir a página de Login
       header("location:ingresar.php"); exit;
-
     }
   }
-
-
 
  ?>
 <body>

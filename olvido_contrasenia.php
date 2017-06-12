@@ -3,12 +3,13 @@
   include_once ("funciones_usuarios.php");
   $usuario_inex = false;
   if (!empty($_POST["email"])) {
+    $usuario = new Usuario($_POST);
     // validar si existe el usuario
-    if (existeElUsuario($_POST["email"])) {
+    if ($usuario->existeElUsuario($modo, $db)) {
       // Traer los datos del usuario
       //  $datosUsr = datosUsuario($_POST["email"]);
       // Setear datos de usuario en sesion
-      guardarUsrSession ($_POST["email"]);
+      $usuario->guardarUsrSession ($modo, $db);
       // Elimino el nombre de la sesión para que no lo identifique como logueado y guardo el nombre en otra variable
       $_SESSION["nombre_usr"] = $_SESSION["nombre"];
       $_SESSION["nombre"] = "";

@@ -21,32 +21,26 @@
     $erroresRegistro = $usuario->validarRegistroUsuario("", $modo, $db, true);
 
     if (empty($erroresRegistro)) {
-      // $usuario = modificarUsuario($_POST);
-
       //Proceso para subir imagen a la carpeta upload
       if (!empty($_FILES)) {
         $guardar = guardarImagen($_FILES);
         if ($guardar["status"] = "Guardada") {
           $img = $guardar["detalle"];
           $usuario->setImg($img);
-    			//Guardar al usuario
-    			$usuario->reescribirUsuario($modo, $db);
-
-          //Mensaje datos guardados satisfactoriamente
-      		header("location:perfilCambiado.php");exit;
         } else {
           $erroresRegistro[] = "no se pudo guardar la imagen";
         }
       }
+      //Guardar al usuario
+      $usuario->reescribirUsuario($modo, $db);
+      //Mensaje datos guardados satisfactoriamente
+      header("location:perfilCambiado.php");exit;
     }
   }else{
     //Carga los datos del usuario de la sesión
 
-    //print_r($_SESSION);
     $usuario = new Usuario($_SESSION);
     $datosUsuario = $usuario->datosUsuario($modo, $db);
-    // print_r($datosUsuario);
-    //print_r($arrayPreguntas1);
 
     $nombreUsuario = $datosUsuario["nombre"];
     $apellidoUsuario = $datosUsuario["apellido"];

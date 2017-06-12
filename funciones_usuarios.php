@@ -157,7 +157,7 @@
   		return $errores;
     }
 
-    private function existeElUsuario($modo = "json", $db){
+    function existeElUsuario($modo = "json", $db){
       $email = $this->email;
       if ($modo == "json") {
         if (file_exists("usuarios.json")) {
@@ -269,8 +269,7 @@
           $usuarios = file_get_contents("usuarios.json");
           //cargo un array de strings, separadas por caracter de fin de linea php
       		$usuariosArray = explode(PHP_EOL, $usuarios);
-          //elimino el último componente del array, que corresponde con el caracter de fin de archivo
-      		//array_pop($usuariosArray);
+
       		foreach ($usuariosArray as $key => $usuario) {
       			$usuarioArray = json_decode($usuario, true);
       			if ($email == $usuarioArray["email"]){
@@ -288,6 +287,7 @@
   	}
 
     function reescribirUsuario($modo="json", $db){
+
       $datosUsuario = get_object_vars($this);
       if ($modo == "json") {
         //cargo en un string el contenido del archivo de usuarios. Son lineas con json
@@ -305,26 +305,33 @@
         $usuarioJSON= implode(PHP_EOL, $usuariosArray);
         file_put_contents("usuarios.json", $usuarioJSON);
       } else {// modo = "db"
-        $sentencia = "UPDATE usuario SET nombre=:nombre, apellido=:apellido, email=:email, telfijo=:telfijo, celular=:celular, pregunta_1=:pregunta_1, respuesta_1=:respuesta_1, pregunta_2=:pregunta_2, respuesta_2=:respuesta_2, pwd=:pwd, img=:img) WHERE usuario.email = '" . $this->email . "'";
-        $stmt = $db->prepare($sentencia);
-        $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
-        $stmt->bindParam(':apellido', $this->apellido, PDO::PARAM_STR);
-        $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
-        $stmt->bindParam(':telfijo', $this->telfijo, PDO::PARAM_STR);
-        $stmt->bindParam(':celular', $this->celular, PDO::PARAM_STR);
-        $stmt->bindParam(':pregunta_1', $this->pregunta_1, PDO::PARAM_STR);
-        $stmt->bindParam(':respuesta_1', $this->respuesta_1, PDO::PARAM_STR);
-        $stmt->bindParam(':pregunta_2', $this->pregunta_2, PDO::PARAM_STR);
-        $stmt->bindParam(':respuesta_2', $this->respuesta_2, PDO::PARAM_STR);
-        $stmt->bindParam(':pwd', $this->pwd, PDO::PARAM_STR);
-        $stmt->bindParam(':img', $this->img, PDO::PARAM_STR);
-        $stmt->execute();
-        echo "La sentencia sql es: " . $sentencia . "<br>";
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo "<PRE>";
-        print_r($resultado);
-        echo "</PRE>";
-        die();
+        try {
+          $stmt = $db->prepare("UPDATE usuario SET nombre=:nombre, apellido=:apellido, telfijo=:telfijo, celular=:celular, pregunta_1=:pregunta_1, respuesta_1=:respuesta_1, pregunta_2=:pregunta_2, respuesta_2=:respuesta_2, pwd=:pwd, img=:img WHERE email = :email");
+          $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
+          $stmt->bindParam(':apellido', $this->apellido, PDO::PARAM_STR);
+          $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
+          $stmt->bindParam(':telfijo', $this->telfijo, PDO::PARAM_STR);
+          $stmt->bindParam(':celular', $this->celular, PDO::PARAM_STR);
+          $stmt->bindParam(':pregunta_1', $this->pregunta_1, PDO::PARAM_STR);
+          $stmt->bindParam(':respuesta_1', $this->respuesta_1, PDO::PARAM_STR);
+          $stmt->bindParam(':pregunta_2', $this->pregunta_2, PDO::PARAM_STR);
+          $stmt->bindParam(':respuesta_2', $this->respuesta_2, PDO::PARAM_STR);
+          $stmt->bindParam(':pwd', $this->pwd, PDO::PARAM_STR);
+          $stmt->bindParam(':img', $this->img, PDO::PARAM_STR);
+          $stmt->execute();
+        }
+        catch(PDOException $ex) {
+          // Houston tenemos un problema
+          echo $ex->getMessage();
+        }
+
+      }
+    }
+
+    function guardarUsrSession ($modo="json", $db) {
+      $datoUsrArr = $this->datosUsuario($modo, $db);
+      foreach ($datoUsrArr as $key => $value) {
+        $_SESSION[$key] = $value;
       }
     }
   }
@@ -375,14 +382,6 @@
       $errores[] = "Error en la validación de password, deben ser iguales";
     }
     return $errores;
-  }
-
-  function guardarUsrSession ($email) {
-
-    $datoUsrArr = datosUsuario($email);
-    foreach ($datoUsrArr as $key => $value) {
-      $_SESSION[$key] = $value;
-    }
   }
 
   function esUnaImagen($ext) {
@@ -437,4 +436,5 @@
     }
     return $respuesta;
   }
+
 ?>
