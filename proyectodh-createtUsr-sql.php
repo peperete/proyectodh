@@ -11,7 +11,9 @@
     } catch (PDOException $exception) {
       echo $exception->getMessage();
     }
+    
     $sentenciaSQL0 = "create database if not EXISTS proyectodh; use proyectodh;";
+
     $sentenciaSQL="
 CREATE TABLE if not exists `usuario` (
   `id` int(11) NOT NULL,
