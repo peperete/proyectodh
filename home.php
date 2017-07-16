@@ -2,6 +2,7 @@
   include ("header.php");
 ?>
 </body>
+<script type="text/javascript" src="cantUsuarios.js"></script>
 <div class="container">
 
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -43,6 +44,7 @@
   <div class="jumbotron">
     <h1>Bienvenidos a Service Advisor</h1>
     <p>Service Advisor es una comunidad de usuarios y profesionales que brindan servicios de mantenimiento del hogar. Se basa en la transparencia en la oferta y demanda de servicios a través de la calificación, recomendación y comentarios mutuos brindados en nuestro portal de servicios y red social.</p>
+    <p> Ya somos <span id="cantUsuarios" class="badge"></span> usuarios en la Comunidad Service Advisor!</p>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Leer más</a></p>
 </div>
 
