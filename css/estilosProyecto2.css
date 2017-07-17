@@ -1,5 +1,5 @@
 body{
-  /*background-color: pink;*/
+  background-color: #B7F892;
 }
 .navbar {
   margin-bottom: 0;
@@ -16,20 +16,22 @@ body{
 }
 .aviso:hover {
     /*border: 1px;*/
-    box-shadow: 5px 6px 13px 6px rgba(0, 140, 186, 0.5);
+    box-shadow: 5px 6px 13px 6px rgba(63, 165, 3, 0.5);
     transform: translateY(-15px);
 }
 
 .jumbotron2 {
-  color:black;
+  color:green;
   font-size: 20px;
+  text-align: center;
 }
 .btn-primary2{
-  background-color:black;
+  background-color:#256102;
 }
 
 .btn-prymary2{
-  background-color:#FF7557;
+
+  background-color:#256102;
 }
 
 

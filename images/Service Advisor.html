@@ -1,6 +1,70 @@
-<?php
-  include("header.php");
-?>
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://proyectodh/ayuda.php -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Para que el zoom funcione correctamente en móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Opcionanl al anaterior, para deshabilitar la posibilidad de zoom en las páginas -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+
+    <!-- Los 3 meta tags anteriores deben ir primeros en el head; cualquier otro contenido del head debe venir a continuación de estos tags -->
+    <title>Service Advisor</title>
+    <link rel="shortcut icon" type="image/x-icon" href="http://proyectodh/images/advisoricono.png">
+    <!-- Bootstrap -->
+    <link href="./Service Advisor_files/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Estilos propios del proyecto que sobrescriben los de bootstrap -->
+    <link rel="stylesheet" href="./Service Advisor_files/estilosProyecto3.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./Service Advisor_files/jquery.min.js.descarga"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./Service Advisor_files/bootstrap.min.js.descarga"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://proyectodh/home.php" target="_self"><img src="./Service Advisor_files/logoadvisor02.png" style="height:36px" class="img-responsive" alt="Image"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://proyectodh/ayuda.php#"><span class="glyphicon glyphicon-wrench"></span> Contratar Servicios</a></li>
+            <li class="dropdown">
+              <a href="http://proyectodh/ayuda.php#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Ingresar <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                                  <li><a href="http://proyectodh/ingresar.php" target="_self">Iniciar sesión</a></li>
+                  <li><a href="http://proyectodh/registro.php" target="_self">Registrarme</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="http://proyectodh/ayuda.php#">Profesionales</a></li>
+                              </ul>
+            </li>
+            <li><a href="http://proyectodh/ayuda.php" target="_self"><span class="glyphicon glyphicon-question-sign"></span> Ayuda</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  
+
 <div class="jumbotron text-center fondoayuda">
     <h1 class="textoayuda">
     PREGUNTAS<br>FRECUENTES
@@ -24,7 +88,7 @@
     </style>
 
 
-  <p><div class="container">
+  <p></p><div class="container">
         <form>
             <div class="row">
               <div class="col-sm-3"></div>
@@ -41,22 +105,22 @@
               <div class="col-sm-3"></div>
             </div>
         </form>
-  </div></p>
+  </div><p></p>
 </div>
 <!--yyyyyy-->
 <div class="container">
       <ul class="nav nav-pills nav-justified">
-        <li class="active servicios"><a data-toggle="pill" href="#home">Lo más consultado</a></li>
-        <li class="servicios"><a data-toggle="pill" href="#menu1">Págos</a></li>
-        <li class="servicios"><a data-toggle="pill" href="#menu2">Servicios</a></li>
-        <li class="servicios"><a data-toggle="pill" href="#menu3">Subscripción</a></li>
+        <li class="logoregister active"><a data-toggle="pill" href="http://proyectodh/ayuda.php#home">Lo más consultado</a></li>
+        <li class="logoregister"><a data-toggle="pill" href="http://proyectodh/ayuda.php#menu1">Págos</a></li>
+        <li class="logoregister"><a data-toggle="pill" href="http://proyectodh/ayuda.php#menu2">Servicios</a></li>
+        <li class="logoregister"><a data-toggle="pill" href="http://proyectodh/ayuda.php#menu3">Subscripción</a></li>
       </ul>
 
   <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
+    <div id="home" class="tab-pane fade active in">
 <!--Inicio Preguntas Frecuentes-->
          <h3>
-        <span class="glyphicon glyphicon-globe iconos"><br><p class="iconos">Más Consultados</p></span>
+        <span class="glyphicon glyphicon-globe"><br><p>Más Consultados</p></span>
       </h3>
       <style>
        h3 {
@@ -89,7 +153,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><strong>¿Cómo publico mi servicio?</strong></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="http://proyectodh/ayuda.php#collapse1"><strong>¿Cómo publico mi servicio?</strong></a>
               </h4>
             </div>
             <div id="collapse1" class="panel-collapse collapse">
@@ -108,7 +172,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><strong>¿Cómo solicitar un servicio?</strong></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="http://proyectodh/ayuda.php#collapse2"><strong>¿Cómo solicitar un servicio?</strong></a>
               </h4>
             </div>
             <div id="collapse2" class="panel-collapse collapse">
@@ -127,7 +191,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><strong>¿Qué medios de pago puedo utilizar?</strong></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="http://proyectodh/ayuda.php#collapse3"><strong>¿Qué medios de pago puedo utilizar?</strong></a>
               </h4>
             </div>
             <div id="collapse3" class="panel-collapse collapse">
@@ -152,7 +216,7 @@
 
     <div id="menu1" class="tab-pane fade">
           <h3>
-        <span class="glyphicon glyphicon-usd iconos"><br><p class="iconos">Págos</p></span>
+        <span class="glyphicon glyphicon-usd"><br><p>Págos</p></span>
           </h3>
           <style>
            h3 {
@@ -167,12 +231,12 @@
            }
           </style>
           <!-- Pregunta 04-->
-          <h2 class="textfaq categorias">Preguntas frecuentes (FAQ)</h2>
-          <p class="servicios"><strong>Nota:</strong> Las <strong>respuestas</strong> de las siguientes preguntas lograrás visualizarlas al hacer <strong>Clik </strong>en los Items siguientes.</p>
+          <h2 class="textfaq">Preguntas frecuentes (FAQ)</h2>
+          <p><strong>Nota:</strong> Las <strong>respuestas</strong> de las siguientes preguntas lograrás visualizarlas al hacer <strong>Clik </strong>en los Items siguientes.</p>
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4"><strong>¿Con qué tarjetas puedo realizar el págo?</strong></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="http://proyectodh/ayuda.php#collapse4"><strong>¿Con qué tarjetas puedo realizar el págo?</strong></a>
               </h4>
             </div>
             <div id="collapse4" class="panel-collapse collapse">
@@ -191,7 +255,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5"><strong>¿Qué sucede, si el pago con mi tarjeta es rechazada?</strong></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="http://proyectodh/ayuda.php#collapse5"><strong>¿Qué sucede, si el pago con mi tarjeta es rechazada?</strong></a>
               </h4>
             </div>
             <div id="collapse5" class="panel-collapse collapse">
@@ -211,7 +275,7 @@
     <div id="menu2" class="tab-pane fade">
           <!-- Pregunta 06-->
           <h3>
-        <span class="glyphicon glyphicon-wrench iconos"><br><p class="iconos">Servicios</p></span>
+        <span class="glyphicon glyphicon-wrench"><br><p>Servicios</p></span>
       </h3>
       <style>
        h3 {
@@ -225,12 +289,12 @@
         color:#979494;
        }
       </style>
-          <h2 class="textfaq categorias">Preguntas frecuentes (FAQ)</h2>
-          <p class="servicios"><strong>Nota:</strong> Las <strong>respuestas</strong> de las siguientes preguntas lograrás visualizarlas al hacer <strong>Clik </strong>en los Items siguientes.</p>
+          <h2 class="textfaq">Preguntas frecuentes (FAQ)</h2>
+          <p><strong>Nota:</strong> Las <strong>respuestas</strong> de las siguientes preguntas lograrás visualizarlas al hacer <strong>Clik </strong>en los Items siguientes.</p>
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse6"><strong>¿Cómo solicitar un Servicio?</strong></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="http://proyectodh/ayuda.php#collapse6"><strong>¿Cómo solicitar un Servicio?</strong></a>
               </h4>
             </div>
             <div id="collapse6" class="panel-collapse collapse">
@@ -249,7 +313,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse7"><strong>¿Por qué debo suscribirme?</strong></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="http://proyectodh/ayuda.php#collapse7"><strong>¿Por qué debo suscribirme?</strong></a>
               </h4>
             </div>
             <div id="collapse7" class="panel-collapse collapse">
@@ -271,7 +335,7 @@
     <div id="menu3" class="tab-pane fade">
           <!-- Pregunta 08-->
           <h3>
-        <span class="glyphicon glyphicon-book iconos"><br><p class="iconos">Suscripción</p></span>
+        <span class="glyphicon glyphicon-book"><br><p>Suscripción</p></span>
       </h3>
       <style>
        h3 {
@@ -285,12 +349,12 @@
         color:#979494;
        }
       </style>
-          <h2 class="textfaq categorias">Preguntas frecuentes (FAQ)</h2>
-          <p class="servicios"><strong>Nota:</strong> Las <strong>respuestas</strong> de las siguientes preguntas lograrás visualizarlas al hacer <strong>Clik </strong>en los Items siguientes.</p>
+          <h2 class="textfaq">Preguntas frecuentes (FAQ)</h2>
+          <p><strong>Nota:</strong> Las <strong>respuestas</strong> de las siguientes preguntas lograrás visualizarlas al hacer <strong>Clik </strong>en los Items siguientes.</p>
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse8"><strong>¿Qué requisitos necesito para suscribirme?</strong></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="http://proyectodh/ayuda.php#collapse8"><strong>¿Qué requisitos necesito para suscribirme?</strong></a>
               </h4>
             </div>
             <div id="collapse8" class="panel-collapse collapse">
@@ -309,7 +373,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse9"><strong>¿Cuáles son los requisitos para suscribirme como Profesional?</strong></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="http://proyectodh/ayuda.php#collapse9"><strong>¿Cuáles son los requisitos para suscribirme como Profesional?</strong></a>
               </h4>
             </div>
             <div id="collapse9" class="panel-collapse collapse">
@@ -328,7 +392,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse10"><strong>¿Cómo me registro para ofrecer mi servicio?</strong></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="http://proyectodh/ayuda.php#collapse10"><strong>¿Cómo me registro para ofrecer mi servicio?</strong></a>
               </h4>
             </div>
             <div id="collapse10" class="panel-collapse collapse">
@@ -348,6 +412,19 @@
   </div>
 </div>
 <!--ddddd-->
-<?php
-   include("footer.php");
-?>
+
+  
+    <footer class="container-fluid text-center">
+      <div class="row">
+        <div class="col-sm-9">
+          <p>Copyright © 2017 Service Advisor S.A. | <a href="http://proyectodh/ayuda.php#">Términos y Condiciones</a></p>
+        </div>
+        <div class="col-sm-3">
+          <img src="./Service Advisor_files/logoadvisor02.png" class="img-responsive" style="height:22px" alt="Image">
+        </div>
+
+      </div>
+    </footer>
+  
+
+</body></html>
