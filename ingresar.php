@@ -52,7 +52,18 @@
     </div>
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <form class="form-horizontal" action="ingresar.php" method="post" enctype="multipart/form-data">
+
+        <?php
+          if (!empty($erroresIngreso)) {
+            foreach ($erroresIngreso as $error) {
+              echo '<div class="alert alert-danger" role="alert">' . $error .'</div>';
+            }
+          }
+        ?>
+        <div class="alert alert-danger" role="alert" id="Err"></div>
+
+        <form class="form-horizontal" action="ingresar.php" method="post" enctype="multipart/form-data"
+        id="formulario">
 
           <div class="form-group">
             <label class="control-label col-sm-2" for="email">Email:</label>
@@ -66,13 +77,6 @@
               <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Ingresar Contraseña">
             </div>
           </div>
-          <?php
-            if (!empty($erroresIngreso)) {
-              foreach ($erroresIngreso as $error) {
-                echo '<div class="alert alert-danger" role="alert">' . $error .'</div>';
-              }
-            }
-          ?>
           <div class="form-group">
             <div class="row">
               <div class="col-sm-12">
@@ -117,4 +121,5 @@
       </div>
   </div>
 </body>
+<script src="js/ingresavalida.js"></script>
 <?php include ("footer.php"); ?>
