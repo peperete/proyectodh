@@ -46,7 +46,7 @@
     <p>Service Advisor es una comunidad de usuarios y profesionales que brindan servicios de mantenimiento del hogar. Se basa en la transparencia en la oferta y demanda de servicios a través de la calificación, recomendación y comentarios mutuos brindados en nuestro portal de servicios y red social.</p>
     <p> Ya somos <span id="cantUsuarios" class="badge"></span> usuarios en la Comunidad Service Advisor!</p>
     <p><a class="btn btn-primary btn-lg btn btn-primary2" href="#" role="button">Leer más</a></p>
-  </div>
+</div>
 
   <div class="container text-center">
     <div class="viselado">
