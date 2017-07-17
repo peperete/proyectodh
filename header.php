@@ -12,6 +12,15 @@
   if (!empty($_SESSION["nombre"])) {
     $nombre_usuario = $_SESSION["nombre"];
   }
+
+  if (isset($_COOKIE["nombreTema"])) {
+    $nombre_tema = $_COOKIE["nombreTema"];
+    // echo "hay nombre en cookie";
+  }
+
+  if (!empty($_SESSION["nombreTema"])) {
+    $nombre_tema = $_SESSION["nombreTema"];
+  }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,7 +39,7 @@
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Estilos propios del proyecto que sobrescriben los de bootstrap -->
-    <link rel="stylesheet" href="css/estilosProyecto.css" id="temacss">
+    <link rel="stylesheet" href="css/<?=($nombre_tema != ""?$nombre_tema:"estilosProyecto") ?>.css" id="temacss">
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

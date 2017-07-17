@@ -16,6 +16,7 @@
     $respuesta_2= $_POST["respuesta_2"];
     $idUsuario = $_POST["id"];
     $pwdUsuario = $_POST["pwd"];
+    $nombreTema = $_POST["nombreTema"];
 
     // Validar usuario
     $erroresRegistro = $usuario->validarRegistroUsuario("", $modo, $db, true);
@@ -33,6 +34,7 @@
       }
       //Guardar al usuario
       $usuario->reescribirUsuario($modo, $db);
+      $_SESSION["nombreTema"] = $nombreTema;
       //Mensaje datos guardados satisfactoriamente
       header("location:perfilCambiado.php");exit;
     }
@@ -54,6 +56,7 @@
     $idUsuario = $datosUsuario["id"];
     $pwdUsuario = $datosUsuario["pwd"];
     $img = $datosUsuario["img"];
+    $nombreTema = $datosUsuario["nombreTema"];
 
   }
 
@@ -177,11 +180,12 @@
             <h5 style="text-align:center; color:white">
             <button type="button" id="otherthemebutton" onclick="btnThemeclick('estilosProyecto2')" class="btn btn-prymary btn-lg btn btn-prymary2">Verde</button>
             </h5>
+            <input type="hidden" id="nombreTema" name="nombreTema" value="<?$nombreTema?>">
           </div>
 
             <div class="col-sm-4">
             <h5 style="text-align:center; color:white">
-            <button type="button" id="otherthemebutton" onclick="btnThemeclick('estilosProyecto3')" class="btn btn-prymary btn-lg btn btn-prymary2">Madera</button>
+            <button type="button" id="otherthemebutton" onclick="btnThemeclick('estilosProyecto3')" class="btn btn-prymary btn-lg btn btn-prymary2" >Madera</button>
             </h5>
           </div>
 
