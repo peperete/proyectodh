@@ -1,11 +1,11 @@
 
 
-function btnThemeclick()
+function btnThemeclick(estilo)
 {
     debugger;
     var temacssLinkElem = $("#temacss");
     temacssLinkElem.remove();
-    var nuevoTemacssLinkElem = loadCss("css/estilosProyecto2.css","temacss");
+    var nuevoTemacssLinkElem = loadCss("css/"+ estilo + ".css","temacss");
     var headsElem = document.getElementsByTagName("head");
     var headElem = headsElem[0];
     headElem.appendChild(nuevoTemacssLinkElem);

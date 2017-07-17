@@ -168,12 +168,35 @@
               <input type="text" class="form-control" id="respuesta_2" name= "respuesta_2" value="<?=$respuesta_2?>"placeholder="Ingresar Respuesta" required>
             </div>
           </div>
+
+          <h3 class="servicios" style="text-align:left">Selecciona para cambiar Theme</h3>
+
+          <div class="form-group">
+          <div class="row">
+            <div class="col-sm-4">
+            <h5 style="text-align:center; color:white">
+            <button type="button" id="otherthemebutton" onclick="btnThemeclick('estilosProyecto2')" class="btn btn-prymary btn-lg btn btn-prymary2">Verde</button>
+            </h5>
+          </div>
+
+            <div class="col-sm-4">
+            <h5 style="text-align:center; color:white">
+            <button type="button" id="otherthemebutton" onclick="btnThemeclick('estilosProyecto3')" class="btn btn-prymary btn-lg btn btn-prymary2">Madera</button>
+            </h5>
+          </div>
+
+          <div class="col-sm-4">
+          <h5 style="text-align:center; color:white">
+          <button type="button" id="otherthemebutton" onclick="btnThemeclick('estilosProyecto')" class="btn btn-prymary btn-lg btn btn-prymary2">Original</button>
+          </h5>
+        </div>
+      </div>
+      </div>
           <div class="form-group">
             <div class="row">
               <div class="col-sm-12">
                 <h5 style="text-align:center; color:white">
                   <button type="submit" class="btn btn-prymary btn-lg btn btn-prymary2" value="guardar" id="guardar" name="guardar">Guardar</button>
-
                 </h5>
               </div>
             </div>
@@ -183,6 +206,6 @@
       <div class="col-sm-3"></div>
     </div>
   </div>
-  <button id="otherthemebutton" onclick="btnThemeclick();">Tema</button>
+
 </body>
 <?php include ("footer.php"); ?>
