@@ -34,6 +34,7 @@
       }
       //Guardar al usuario
       $usuario->reescribirUsuario($modo, $db);
+      $_SESSION["nombreTema"] = $nombreTema;
       //Mensaje datos guardados satisfactoriamente
       header("location:perfilCambiado.php");exit;
     }
