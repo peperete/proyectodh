@@ -9,6 +9,8 @@ function btnThemeclick(estilo)
     var headsElem = document.getElementsByTagName("head");
     var headElem = headsElem[0];
     headElem.appendChild(nuevoTemacssLinkElem);
+    var nombreTemaElem = document.getElementById("nombreTema");
+    nombreTemaElem.value=estilo;
 
 }
 
