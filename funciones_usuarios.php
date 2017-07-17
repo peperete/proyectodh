@@ -17,6 +17,7 @@
     private $pwd;
     private $id;
     private $img;
+    private $nombreTema;
 
     function __construct($usuario) {
   		$this->nombre = !empty($usuario["nombre"])?$usuario["nombre"]: "";
@@ -29,6 +30,7 @@
       $this->pregunta_2 = !empty($usuario["pregunta_2"])?$usuario["pregunta_2"]: "";
       $this->respuesta_2 = !empty($usuario["respuesta_2"])?$usuario["respuesta_2"]: "";
   		$this->pwd = !empty($usuario["pwd"])?password_hash($usuario["pwd"], PASSWORD_DEFAULT): "";
+      $this->nombreTema = !empty($usuario["nombreTema"])?$usuario["nombreTema"]: "estilosProyecto";
   	}
 
     function setNombre($nombre) {
@@ -118,6 +120,13 @@
     function getImg() {
       return $this->img;
     }
+    function setNombreTema($nombreTema) {
+      $this->nombreTema = $nombreTema;
+    }
+
+    function getNombreTema() {
+      return $this->nombreTema;
+    }
 
     function validarRegistroUsuario ($cpwd, $modo="json", $db, $usuarioModificar=false){
       $errores = [];
@@ -204,7 +213,7 @@
         $usuarioJSON = json_encode(get_object_vars($this));
     		file_put_contents("usuarios.json", $usuarioJSON . PHP_EOL, FILE_APPEND);
       } else { // modo = "db"
-        $sentencia = "INSERT INTO usuario (nombre, apellido, email, telfijo, celular, pregunta_1, respuesta_1, pregunta_2, respuesta_2, pwd, img) VALUES (:nombre, :apellido, :email, :telfijo, :celular, :pregunta_1, :respuesta_1, :pregunta_2, :respuesta_2, :pwd, :img)";
+        $sentencia = "INSERT INTO usuario (nombre, apellido, email, telfijo, celular, pregunta_1, respuesta_1, pregunta_2, respuesta_2, pwd, img, nombreTema) VALUES (:nombre, :apellido, :email, :telfijo, :celular, :pregunta_1, :respuesta_1, :pregunta_2, :respuesta_2, :pwd, :img, :nombreTema)";
         $stmt = $db->prepare($sentencia);
         $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
         $stmt->bindParam(':apellido', $this->apellido, PDO::PARAM_STR);
@@ -217,6 +226,7 @@
         $stmt->bindParam(':respuesta_2', $this->respuesta_2, PDO::PARAM_STR);
         $stmt->bindParam(':pwd', $this->pwd, PDO::PARAM_STR);
         $stmt->bindParam(':img', $this->img, PDO::PARAM_STR);
+        $stmt->bindParam(':nombreTema', $this->nombreTema, PDO::PARAM_STR);
         $stmt -> execute();
         if ($stmt->rowCount() > 0) {
           return true;
@@ -306,7 +316,7 @@
         file_put_contents("usuarios.json", $usuarioJSON);
       } else {// modo = "db"
         try {
-          $stmt = $db->prepare("UPDATE usuario SET nombre=:nombre, apellido=:apellido, telfijo=:telfijo, celular=:celular, pregunta_1=:pregunta_1, respuesta_1=:respuesta_1, pregunta_2=:pregunta_2, respuesta_2=:respuesta_2, pwd=:pwd, img=:img WHERE email = :email");
+          $stmt = $db->prepare("UPDATE usuario SET nombre=:nombre, apellido=:apellido, telfijo=:telfijo, celular=:celular, pregunta_1=:pregunta_1, respuesta_1=:respuesta_1, pregunta_2=:pregunta_2, respuesta_2=:respuesta_2, pwd=:pwd, img=:img, nombreTema=:nombreTema WHERE email = :email");
           $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
           $stmt->bindParam(':apellido', $this->apellido, PDO::PARAM_STR);
           $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
@@ -318,6 +328,7 @@
           $stmt->bindParam(':respuesta_2', $this->respuesta_2, PDO::PARAM_STR);
           $stmt->bindParam(':pwd', $this->pwd, PDO::PARAM_STR);
           $stmt->bindParam(':img', $this->img, PDO::PARAM_STR);
+          $stmt->bindParam(':nombreTema', $this->nombreTema, PDO::PARAM_STR);
           $stmt->execute();
         }
         catch(PDOException $ex) {

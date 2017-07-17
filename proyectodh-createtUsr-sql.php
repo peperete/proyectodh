@@ -11,7 +11,7 @@
     } catch (PDOException $exception) {
       echo $exception->getMessage();
     }
-    
+
     $sentenciaSQL0 = "create database if not EXISTS proyectodh; use proyectodh;";
 
     $sentenciaSQL="
@@ -28,7 +28,8 @@ CREATE TABLE if not exists `usuario` (
   `pregunta_1` varchar(255) DEFAULT NULL,
   `respuesta_1` varchar(255) DEFAULT NULL,
   `pregunta_2` varchar(255) DEFAULT NULL,
-  `respuesta_2` varchar(255) DEFAULT NULL
+  `respuesta_2` varchar(255) DEFAULT NULL,
+  `nombreTema` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 
 $sentenciaSQL2="ALTER TABLE `usuario`

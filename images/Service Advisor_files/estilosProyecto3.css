@@ -1,0 +1,64 @@
+body{
+  background-image: url(../images/fondo1.jpg);
+}
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  /*background-color: lightblue;*/
+}
+
+.nav a {
+  text-color: white;
+}
+
+.aviso {
+  margin-bottom: 20px;
+}
+.aviso:hover {
+    /*border: 1px;*/
+    /*box-shadow: 5px 6px 13px 6px rgba(63, 165, 3, 0.5);*/
+    transform: translateY(-15px);
+}
+
+.jumbotron2 {
+  color:darkblue;
+  font-size: 20px;
+  text-align: center;
+}
+
+.categorias{
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px white, 0 0 25px blue, 0 0 5px white;
+}
+
+.servicios{
+  font-size: 20px;
+  font-weight: bold;
+  /*text-shadow: 2px 2px 4px #ffffff;*/
+  text-shadow: 1px 1px 2px white, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.logoregister{
+  background-color: white;
+  border-radius: 50px;
+  opacity: 0.5;
+}
+
+.btn-primary2{
+  background-color:darkblue;
+}
+
+.btn-prymary2{
+
+  background-color:darkblue;
+}
+
+
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  #myCarousel { display: none; }   /* hide it elsewhere */
+}
+
+@media screen and (min-width: 768px) {
+  #myCarousel { display: block; }  /* show it on small screens */
+}

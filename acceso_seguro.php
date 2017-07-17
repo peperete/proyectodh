@@ -27,19 +27,19 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <h3 style="text-align:center"><strong>Validacion</strong></h3>
+        <h3 class="categorias" style="text-align:center"><strong>Validacion</strong></h3>
       </div>
       <div class="col-sm-3"></div>
     </div>
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <h6 style="color: #FF7557; text-align:center"><img src="images/logoadvisor02.png" class="img-responsive"  alt="logotipo" ></h6>
+        <h6 style="color: #FF7557; text-align:center"><img src="images/logoadvisor02.png" class="img-responsive logoregister"  alt="logotipo" ></h6>
       </div>
       <div class="col-sm-3"></div>
     </div>
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <h3 style="text-align:center; font-size:30px">Has respondido correctamente, puedes cambiar la contraseña</h3>
+        <h3 class="categorias"style="text-align:center; font-size:30px">Has respondido correctamente, puedes cambiar la contraseña</h3>
       </div>
       <div class="col-sm-3"></div>
     </div>
@@ -49,14 +49,14 @@
 
 
           <div class="form-group">
-            <label class="control-label col-sm-2" for="pwd">Ingresa Nueva Contraseña</label>
+            <label class="control-label col-sm-2 servicios" for="pwd">Ingresa Nueva Contraseña</label>
             <div class="col-sm-10">
               <input type="password" class="form-control" id="pwd" name="pwd1" placeholder="Ingresar Contraseña">
             </div>
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-2" for="cpwd">Confirmar Contraseña:</label>
+            <label class="control-label col-sm-2 servicios" for="cpwd">Confirmar Contraseña:</label>
             <div class="col-sm-10">
               <input type="password" class="form-control" id="cpwd" name="pwd2" placeholder="Confirmar" required>
             </div>
