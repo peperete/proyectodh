@@ -3,10 +3,11 @@ window.onload = function(){
 
     document.getElementById('formulario').addEventListener('submit', function(event){
       var errores = [];
-
-      if(document.getElementById('file-input').value==''){
-        errores.push("La foto es requerida");
-      }
+      //alert(errores);
+      //event.preventDefault();
+      //if(document.getElementById('file-input').value==''){
+      //  errores.push("La foto es requerida");
+      //}
       if(document.getElementById('nombre').value==''){
         errores.push("El nombre es requerido");
       }
@@ -46,7 +47,6 @@ window.onload = function(){
         errores.push("las contraseñas son diferentes");
       }
 
-
       if(errores.length > 0){
         document.getElementById('Err').innerHTML='';
         document.getElementById('Err').style.display='block';
@@ -56,6 +56,7 @@ window.onload = function(){
           }
           document.getElementById('Err').appendChild(document.createTextNode(element));
         });
+
         event.preventDefault();
         return false;
       }else{
