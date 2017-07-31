@@ -1,0 +1,50 @@
+PHP desde 0 - Primeros Scripts
+Variables y Tipos de Datos
+Operadores, Estructuras, Funciones
+Bases de datos MySQL (Configuración, tipos de datos y relaciones)
+Programación orientada a objetos (clases y funciones)
+Arquitectura MVC - Modelo Vista Controlador
+Jquery, AngularJS (Modelo, vista, controlador) en Javascript
+Composer e instalación de Laravel
+Migrations y seeder. Rutas. Controladores y vistas
+Modelos y Eloquent y manejo de base de datos en Laravel
+Desarrollo de Aplicación para Cinemas [Back-End y Front-End]
+Frontend - Bootstrap para tus apps
+Emails automáticos, mapas, gráficos
+Login con Facebook y otros ejemplos prácticos
+
+Algunos proyectos realizados
+
+App Cinemas
+
+Presentación del Proyecto
+Herramientas a utilizar
+POO – MVC
+Javascript y JQuery en Laravel
+AngularJS Práctico (MVC en Javascript)
+Instalación y Estructura
+Base de Datos – Estructura y Creación
+Migrations y Seeders
+Rutas, Controladores, Modelos y Vistas
+Gestión de Usuarios
+Login con Bootstrap
+Login con Facebook
+Backend de la App
+Frontend de la App (Templates, Bootstrap)
+
+FactuMaster CRM [NUEVO]
+
+Presentación del Proyecto
+Estructura general
+Base de Datos
+Instalación de Laravel 5.4
+Integración Template – Bootstrap – Jquery
+Rutas, Modelos, Migraciones , Controladores
+Registro y autenticación de Usuarios
+Validación de Roles de usuario
+CRUD de Datos (usuarios, clientes, facturas...)
+Administración de archivos
+Generar reportes
+Laravel – Ajax (buscadores, filtros…)
+Ajustes finales
+Publicación en la nube
